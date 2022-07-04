@@ -35,10 +35,11 @@ def Vet_resultante(p1,p2):
 
 def Soma_vet(vetores):
     vet_result = [0, 0, 0]
-    for i in vetores:
-        vet_result[0] = vet_result[0]+vetores[i[0]]
-        vet_result[1] = vet_result[0]+vetores[i[1]]
-        vet_result[2] = vet_result[0]+vetores[i[2]]
+    for i in range(0, len(vetores), 1):
+        n_vet = vetores[i]
+        vet_result[0] = vet_result[0]+n_vet[0]
+        vet_result[1] = vet_result[1]+n_vet[1]
+        vet_result[2] = vet_result[2]+n_vet[2]
     return vet_result
 
 #Lei de Coulomb
@@ -61,6 +62,26 @@ def Intensidade_Campo(vetc):
     intensidade = math.sqrt(valor)
     return intensidade
 
+def Linha_inf_de_carga(Carga_linha, eixo, pos_eixo, pos_ref):
+    if eixo == "x":
+        vet = [pos_eixo, pos_ref[1], pos_ref[2]]
+        vetuni = vet_uni(vet[0], vet[1], vet[2])
+        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
+        Campo_result1 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result1
+    elif eixo == "y":
+        vet = [pos_ref[0], pos_eixo, pos_ref[2]]
+        vetuni = vet_uni(vet[0], vet[1], vet[2])
+        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
+        Campo_result2 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result2
+    elif eixo == "z":
+        vet = [pos_ref[0], pos_ref[1], pos_eixo]
+        vetuni = vet_uni(vet[0], vet[1], vet[2])
+        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
+        Campo_result3 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result3
+
 def Menu_eletrostatica():
     print("################################################################")
     print("# Digite a opção desejada:                                     #")
@@ -73,8 +94,8 @@ def Menu_eletrostatica():
 
     ############################## Força elétrica ###########################
     if resp == 1:
-        q1 = input(float("Valor da carga q1 em Coulomb: "))
-        q2 = input(float("Valor da carga q2 em Coulomb: "))
+        q1 = float(input("Valor da carga q1 em Coulomb: "))
+        q2 = float(input("Valor da carga q2 em Coulomb: "))
         print("Posição da carga q1: ")
         pos1 = inserir_pv_cart()
         print("Posição da carga q2: ")
@@ -83,7 +104,7 @@ def Menu_eletrostatica():
         print("A Força entre q1 e q2 é: Fe = {} N\n".format(F))
     ########################### Campo Elétrico #############################
     if resp == 2:
-        q1 = input(float("Valor da carga q1 em Coulomb: "))
+        q1 = float(input("Valor da carga q1 em Coulomb: "))
         print("Posição da carga q1: ")
         pos1 = inserir_pv_cart()
         print("Posição de referência: ")
@@ -112,6 +133,7 @@ def Menu_eletrostatica():
             print("A força Resultante é : {} N\n".format(vet))
         elif tipo == "C":
             print("O Campo Resultante é : {} V/m\n".format(vet))
+
             
             
             
