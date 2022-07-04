@@ -84,6 +84,33 @@ def Linha_inf_de_carga(Carga_linha, eixo, pos_eixo, pos_ref):
         const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
         Campo_result3 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
         return Campo_result3
+    
+def Superficie_de_carga(Carga_Sup, eixo_norm, pos_eixo, pos_ref):
+    if eixo_norm == "x":
+        vet = [pos_eixo, pos_ref[1], pos_ref[2]]
+        vetuni = vet_uni(vet[0], vet[1], vet[2])
+        const = Carga_Sup/2*Eo
+        Campo_result1 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result1
+    if eixo_norm == "y":
+        vet = [pos_ref[0], pos_eixo, pos_ref[2]]
+        vetuni = vet_uni(vet[0], vet[1], vet[2])
+        const = Carga_Sup/2*Eo
+        Campo_result2 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result2
+    if eixo_norm == "z":
+        vet = [pos_ref[0], pos_ref[1], pos_eixo]
+        vetuni = vet_uni(vet[0], vet[1], vet[2])
+        const = Carga_Sup/2*Eo
+        Campo_result3 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result3
+
+def Volume_de_carga(Carga_volum, pos_centro, pos_ref):
+    dist = Dist_p1_p2(pos_ref, pos_centro)
+    vet = vet_uni(Vet_resultante(pos_ref, pos_centro)[0], Vet_resultante(pos_ref, pos_centro)[1], Vet_resultante(pos_ref, pos_centro)[2])
+    const = K*Carga_volum/math.pow(dist, 2)
+    Ces = [const*vet[0], const*vet[1], const*vet[2]]
+    return Ces
 
 def Menu_eletrostatica():
     print("################################################################")
@@ -144,7 +171,7 @@ def Menu_eletrostatica():
 #1. Lei de coulomb, superposição de cargas pontuais (ok)
 #2. Intensidade de campo elétrico(ok)
 #3. Campo elétrico em distribuição contínua de cargas (linhas de carga, superfície de cargas,
-#volume de cargas)(---)
+#volume de cargas)(ok)
 #4. Densidade de fluxo elétrico(----)
 #5. Lei de Gauss(---)
 #6. Potencial elétrico(---) 
