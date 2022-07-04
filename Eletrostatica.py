@@ -1,5 +1,5 @@
 import math
-from algebravetorial import vet_uni,inserir_pv_cart
+from trab_eletromag_analisevet import vet_uni,inserir_pv_cart
 
 ################### Instruções de Uso ##################
 
