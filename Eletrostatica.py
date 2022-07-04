@@ -25,7 +25,7 @@ from trab_eletromag_analisevet import vet_uni,inserir_pv_cart
 
 
 # Constantes
-Eo= 4*math.pi*8.854*math.pow(10,-12)
+Eo= 8.854*math.pow(10,-12)
 K= 9*math.pow(10,9)
 
 def Dist_p1_p2(p1,p2):
