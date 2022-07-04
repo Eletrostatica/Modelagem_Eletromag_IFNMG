@@ -61,13 +61,6 @@ def Intensidade_Campo(vetc):
     intensidade = math.sqrt(valor)
     return intensidade
 
-
-
-
-
-
-
-
 def Menu_eletrostatica():
     print("################################################################")
     print("# Digite a opção desejada:                                     #")
