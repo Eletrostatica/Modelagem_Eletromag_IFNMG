@@ -14,7 +14,7 @@ import numpy
 MIo= 4*math.pi*math.pow(10, -7)
 Eo=float(8.85e-12)
 
-#####################Calcula a força magnetica devido uma carga#####################
+#####################  Calcula a força magnetica devido uma carga  #####################
 def forca_magnetica(q,B,v,Teta):
     #B= campomagnetico(); caso tenha que calcular o campo magnetico primeiro
     #B=float(input("Valor do campo magnetico: (em Tesla)"))
@@ -28,12 +28,12 @@ def forca_magnetica(q,B,v,Teta):
     print("A força magnetica que age sobre a carga é de ", Fm)
     #return Fm
 
-############################Conversor de graus para radianos############################
+############################  Conversor de graus para radianos  ############################
 def conv_angulo(T):
     Tetarad=numpy.radians(T)
     return Tetarad
 
-########################Conversor de numeros para cientifico############################
+########################  Conversor de numeros para cientifico  ############################
 def cientific_format(X):
     limitador= round(X,2)
     formatado=numpy.format_float_scientific(limitador)
