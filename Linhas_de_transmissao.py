@@ -2,8 +2,6 @@ import math
 import numpy
 #from magnetostatica import camposmagneticos
 
-################### Instruções de Uso ##################
-
 # 1. Força magnética e força entre elementos de corrente.
 # 2. Capacitância
 # 3. Indutores, Indutância e Indutância Mútua
