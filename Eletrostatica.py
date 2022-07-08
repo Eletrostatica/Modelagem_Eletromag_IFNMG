@@ -1,32 +1,33 @@
 import math
-from trab_eletromag_analisevet import vet_uni,inserir_pv_cart
+from algebravetorial import vet_uni,inserir_pv_cart
+#from numpy import format_float_scientific
+#import sympy
 
-################### Instruções de Uso ##################
-
-# Dist_p1_p2(ponto1, ponto2)
-# retorna a distância entre esses dois pontos, onde
-# onde cada ponto é um vetor com (ax, ay, az).
-
-
-# Vet_resultante(ponto1(vetor),ponto2(vetor))
-# retorna o vetor ponto1-ponto2
-
-# Soma_vet((lista de vetores))
-# retorna um vetor, que é a soma dos vetores presentes na lista de vetores
-
-# Forca(carga1(escalar), posição da carga1(vetor), carga2(escalar), posição da carga2(vetor))
-# Restorna o vetor força, entre a carga1 e a carga 2
-# Exemplo :Duas cargas pontuais de 1mC e -2mC, estão localizadas em (3,2,-1) e
-# (-1,-1,4).Calcule a força elétrica sobre uma carga de 10nC, localizada em (0,3,1)
-# e intensidade do campo elétrico nesse ponto.
-
-# Campo_eletrico(carga1, posição da carga1, posição de referência)
-# retorna o vetor campo elétrico, na posição de referência
 
 
 # Constantes
-Eo= 8.854*math.pow(10,-12)
+Eo= (math.pow(10,-9))/(36*math.pi)
 K= 9*math.pow(10,9)
+
+# Variáveis Globais
+Vet_info = []
+
+
+def add_info(info):
+    op = str(input("Deseja guardar essa informação? [s] ou [n] ")).lower()
+    if op == "s":
+        Vet_info.append(info)
+        print("Informação amazenada com sucesso!!!")
+    elif op == "n":
+        print("A informação não foi armazenada")
+
+def print_Vet_info():
+    for i in Vet_info:
+        print(" Na posição {} temos: {}\n".format(i, Vet_info[i]))
+
+def clear_Vet_info():
+    Vet_info.clear()
+    print("A lista está limpa!!!!")
 
 def Dist_p1_p2(p1,p2):
     dist = math.sqrt(math.pow(p1[0]-p2[0],2)+math.pow(p1[1]-p2[1],2)+math.pow(p1[2]-p2[2],2))
@@ -65,45 +66,57 @@ def Intensidade_Campo(vetc):
     intensidade = math.sqrt(valor)
     return intensidade
 
-def Linha_inf_de_carga(Carga_linha, eixo, pos_eixo, pos_ref):
-    if eixo == "x":
-        vet = [pos_eixo, pos_ref[1], pos_ref[2]]
+def Linha_inf_de_carga(Carga_linha, eixo1, eixo2, pos_eixo1,pos_eixo2, pos_ref):
+    if eixo1 == "x" and eixo2 == "y":
+        ponto_linha = [pos_eixo1, pos_eixo2, pos_ref[2]]
+        vet = Vet_resultante(pos_ref, ponto_linha)
         vetuni = vet_uni(vet[0], vet[1], vet[2])
-        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
-        Campo_result1 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
-        return Campo_result1
-    elif eixo == "y":
-        vet = [pos_ref[0], pos_eixo, pos_ref[2]]
+        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(pos_ref, ponto_linha))
+        Campo_result = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result
+    elif eixo1 == "x" and eixo2 == "z":
+        ponto_linha = [pos_eixo1, pos_ref[1], pos_eixo2]
+        vet = Vet_resultante(pos_ref, ponto_linha)
         vetuni = vet_uni(vet[0], vet[1], vet[2])
-        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
-        Campo_result2 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
-        return Campo_result2
-    elif eixo == "z":
-        vet = [pos_ref[0], pos_ref[1], pos_eixo]
+        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(pos_ref, ponto_linha))
+        Campo_result = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result
+    elif eixo1 == "y" and eixo2 == "z":
+        ponto_linha = [pos_ref[0], pos_eixo1, pos_eixo2]
+        vet = Vet_resultante(pos_ref, ponto_linha)
         vetuni = vet_uni(vet[0], vet[1], vet[2])
-        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(vet, pos_ref))
-        Campo_result3 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
-        return Campo_result3
-    
-def Superficie_de_carga(Carga_Sup, eixo_norm, pos_eixo, pos_ref):
+        const = Carga_linha / (2 * math.pi * Eo * Dist_p1_p2(pos_ref, ponto_linha))
+        Campo_result = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
+        return Campo_result
+
+def Superficie_de_carga(Carga_Sup, eixo_norm, pos_sup, ponto_ref):
     if eixo_norm == "x":
-        vet = [pos_eixo, pos_ref[1], pos_ref[2]]
-        vetuni = vet_uni(vet[0], vet[1], vet[2])
-        const = Carga_Sup/2*Eo
-        Campo_result1 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
-        return Campo_result1
+        if ponto_ref[0] > pos_sup:
+            const = (Carga_Sup)/(2*Eo)
+            Campo_result = [const, 0, 0]
+            return Campo_result
+        elif ponto_ref[0] < pos_sup:
+            const = (Carga_Sup) / (2 * Eo)
+            Campo_result = [-1*const, 0, 0]
+            return Campo_result
     if eixo_norm == "y":
-        vet = [pos_ref[0], pos_eixo, pos_ref[2]]
-        vetuni = vet_uni(vet[0], vet[1], vet[2])
-        const = Carga_Sup/2*Eo
-        Campo_result2 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
-        return Campo_result2
+        if ponto_ref[1] > pos_sup:
+            const = (Carga_Sup)/(2*Eo)
+            Campo_result = [0, const, 0]
+            return Campo_result
+        elif ponto_ref['0'] < pos_sup:
+            const = (Carga_Sup) / (2 * Eo)
+            Campo_result = [0, -1*const, 0]
+            return Campo_result
     if eixo_norm == "z":
-        vet = [pos_ref[0], pos_ref[1], pos_eixo]
-        vetuni = vet_uni(vet[0], vet[1], vet[2])
-        const = Carga_Sup/2*Eo
-        Campo_result3 = [const * vetuni[0], const * vetuni[1], const * vetuni[2]]
-        return Campo_result3
+        if ponto_ref[2] > pos_sup:
+            const = (Carga_Sup)/(2*Eo)
+            Campo_result = [0, 0, const]
+            return Campo_result
+        elif ponto_ref[2] < pos_sup:
+            const = (Carga_Sup) / (2 * Eo)
+            Campo_result = [0, 0, -1*const]
+            return Campo_result
 
 def Volume_de_carga(Carga_volum, pos_centro, pos_ref):
     dist = Dist_p1_p2(pos_ref, pos_centro)
@@ -112,58 +125,164 @@ def Volume_de_carga(Carga_volum, pos_centro, pos_ref):
     Ces = [const*vet[0], const*vet[1], const*vet[2]]
     return Ces
 
+def Densidade_de_fluxo_cp(q1, pos1, pos_ref):
+    vet = Campo_eletrico(q1, pos1, pos_ref)
+    D = [Eo*vet[0], Eo*vet[1], Eo*vet[2]]
+    return D
+
+def Densidade_de_fluxo_sp(vet_campo):
+    D = [Eo*vet_campo[0], Eo*vet_campo[1], Eo*vet_campo[2]]
+    return D
+
+
+
+##################### Funções de Leitura ######################
+def Ler_Carga():
+    q = float(input("Carga: "))
+    unidade = str(input("Qual a unidade? : ")).lower().strip()
+
+    if unidade == "mili":
+        q = q*math.pow(10,-3)
+        return q
+    if unidade == "micro":
+        q = q*math.pow(10, -6)
+        return q
+    if unidade == "nano":
+        q = q*math.pow(10, -9)
+        return q
+    if unidade == "pico":
+        q = q*math.pow(10, -12)
+        return q
+
+def Ler_Info_Forca():
+    print("Valor da carga q1 em Coulomb: ")
+    q1 = Ler_Carga()
+    print("Valor da carga q2 em Coulomb: ")
+    q2 = Ler_Carga()
+    print("Posição da carga q1: ")
+    pos1 = inserir_pv_cart()
+    print("Posição da carga q2: ")
+    pos2 = inserir_pv_cart()
+    vet = [q1, pos1, q2, pos2]
+    return vet
+
+def Ler_Info_Campo():
+    print("Valor da carga q1 em Coulomb: ")
+    q1 = Ler_Carga()
+    print("Posição da carga q1: ")
+    pos1 = inserir_pv_cart()
+    print("Posição de referência: ")
+    pos_ref = inserir_pv_cart()
+    vet = [q1, pos1, pos_ref]
+    return vet
+
+def Ler_Info_linha_Inf_Carga():
+    print("Qual a carga presente na Linha infinita? : ")
+    carga = Ler_Carga()
+    eixo1 = str(input("Qual o primeiro Eixo da Linha? : ")).lower().strip()
+    pos_eixo1 = float(input("Qual a posição do eixo? : "))
+    eixo2 = str(input("Qual o segundo Eixo da Linha? : ")).lower().strip()
+    pos_eixo2 = float(input("Qual a posição do eixo? : "))
+    print("Ponto em que deseja calcular o campo: ")
+    pos_ref = inserir_pv_cart()
+    vet = Linha_inf_de_carga(carga, eixo1, eixo2, pos_eixo1, pos_eixo2, pos_ref)
+    return vet
+
+def Ler_Info_Sup_de_Carga():#(Carga_Sup, eixo_norm, pos_eixo, pos_ref)
+    print("Qual a carga presente na Superfície? ")
+    carga = Ler_Carga()
+    eixo_norm = str(input("Qual o eixo da Normal? : ")).lower().strip()
+    pos_eixo = float(input("Qual a posição do plano no eixo {}?  : ".format(eixo_norm)))
+    print("Qual a posição de Referencia? ")
+    pos_ref = inserir_pv_cart()
+    vet = Superficie_de_carga(carga, eixo_norm, pos_eixo, pos_ref)
+    return vet
+
+
+
+
+
+
+
 def Menu_eletrostatica():
-    print("################################################################")
-    print("# Digite a opção desejada:                                     #")
-    print("# 1 - Força entre duas cargas                                  #")
-    print("# 2 - Campo elétrico em um determinado ponto                   #")
-    print("# 3 - Intensidade do Campo elétrico                            #")
-    print("# 4 - Sobreposição de Força ou Campo                           #")
-    print("################################################################")
-    resp = int(input("# Número escolhido: "))
+    while True:
+        print("################################################################")
+        print("# Digite a opção desejada:                                     #")
+        print("# 1 - Força entre duas cargas                                  #")
+        print("# 2 - Campo elétrico em um determinado ponto                   #")
+        print("# 3 - Intensidade do Campo elétrico                            #")
+        print("# 4 - Sobreposição de Força ou Campo                           #")
+        print("# 5 - Campo de Linha Infinita de Cargas                        #")
+        print("# 6 - Campo de Superfície de Cargas (plano)                    #")
+        print("# 7 - Campo de Volume de Cargas (esfera)                       #")
+        print("# 8 - Mostrar Lista                                            #")
+        print("# 9 - limpar Lista                                             #")
+        print("# 10- Sair                                                     #")
+        print("################################################################")
+        resp = int(input("# Número escolhido: "))
 
-    ############################## Força elétrica ###########################
-    if resp == 1:
-        q1 = float(input("Valor da carga q1 em Coulomb: "))
-        q2 = float(input("Valor da carga q2 em Coulomb: "))
-        print("Posição da carga q1: ")
-        pos1 = inserir_pv_cart()
-        print("Posição da carga q2: ")
-        pos2 = inserir_pv_cart()
-        F = Forca(q1, pos1, q2, pos2)
-        print("A Força entre q1 e q2 é: Fe = {} N\n".format(F))
-    ########################### Campo Elétrico #############################
-    if resp == 2:
-        q1 = float(input("Valor da carga q1 em Coulomb: "))
-        print("Posição da carga q1: ")
-        pos1 = inserir_pv_cart()
-        print("Posição de referência: ")
-        pos_ref = inserir_pv_cart()
-        Ce = Campo_eletrico(q1, pos1, pos_ref)
-        print("O campo elétrico em {} é: Ce = {} V/m\n".format(pos_ref, Ce))
-    ########################### Intensidade de Campo elétrico ###############
-    if resp == 3:
-        print("Digite o vetor do campo elétrico, para saber sua intensidade: ")
-        Campo = inserir_pv_cart()
-        I = Intensidade_Campo(Campo)
-        print("A intensidade do campo elétrico {} V/m é = {} V/m".format(Campo, I))
+        ############################## Força elétrica ###########################
+        if resp == 1:
+            vet = Ler_Info_Forca()
+            F = Forca(vet[0], vet[1], vet[2], vet[3])
+            print("A Força entre q1 e q2 é: Fe = {} N\n".format(F))
+            add_info(F)
+        ########################### Campo Elétrico #############################
+        if resp == 2:
+            vet = Ler_Info_Campo()
+            Ce = Campo_eletrico(vet[0], vet[1], vet[2])
+            print("O campo elétrico em {} é: Ce = {} V/m\n".format(vet[2], Ce))
+            add_info(Ce)
+        ########################### Intensidade de Campo elétrico ###############
+        if resp == 3:
+            print("Digite o vetor do campo elétrico, para saber sua intensidade: ")
+            Campo = inserir_pv_cart()
+            I = Intensidade_Campo(Campo)
+            print("A intensidade do campo elétrico {} V/m é = {} V/m".format(Campo, I))
 
-    ########################## Sobreposição de Força ou Campo ################
-    if resp == 4:
-        tipo = str(input("Será superposição de Força ou Campo? [N]->Força ou [C]-> Campo ")).upper()
-        vetores = []
-        while True:
-            vet = inserir_pv_cart()
-            vetores.append(vet)
-            opc = str(input("Você deseja adicionar mais um vetor? [s] ou [n] -> ")).lower()
-            if opc == "n":
-                break
-        vet = Soma_vet(vetores)
-        if tipo == "N":
-            print("A força Resultante é : {} N\n".format(vet))
-        elif tipo == "C":
-            print("O Campo Resultante é : {} V/m\n".format(vet))
+        ########################## Sobreposição de Força ou Campo ################
+        if resp == 4:
+            tipo = str(input("Será superposição de Força ou Campo? [N]->Força ou [C]-> Campo ")).upper()
+            perg = str(input("Deseja usar as informações armazenadas? [N] ou [S] ")).upper().strip()
+            vetores = []
+            if perg == "S":
+                vet = Soma_vet(Vet_info)
+                if tipo == "N":
+                    print("A força Resultante é : {} N\n".format(vet))
+                elif tipo == "C":
+                    print("O Campo Resultante é : {} V/m\n".format(vet))
+            elif perg == "N":
+                while True:
+                    vet = inserir_pv_cart()
+                    vetores.append(vet)
+                    opc = str(input("Você deseja adicionar mais um vetor? [s] ou [n] -> ")).lower()
+                    if opc == "n":
+                        break
+                vet = Soma_vet(vetores)
+                if tipo == "N":
+                    print("A força Resultante é : {} N\n".format(vet))
+                elif tipo == "C":
+                    print("O Campo Resultante é : {} V/m\n".format(vet))
+        if resp == 5:
+            Cl = Ler_Info_linha_Inf_Carga()
+            print("O campo gerado pela linha inf é: {} V/m\n".format(Cl))
+            add_info(Cl)
+        if resp == 6:
+            Cs = Ler_Info_Sup_de_Carga()
+            print("O campo gerado pela superficie inf é: {} V/m\n".format(Cs))
+            add_info(Cs)
+        if resp == 7:
+            print("Volume de Campo")
+        if resp == 8:
+            print("Mostrar Lista")
+        if resp == 9:
+            print("A lista foi Limpa")
+            Vet_info.clear()
+        if resp == 10:
+            break
 
+
+Menu_eletrostatica()
             
             
             
