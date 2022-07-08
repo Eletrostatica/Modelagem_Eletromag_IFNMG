@@ -134,6 +134,22 @@ def Densidade_de_fluxo_sp(vet_campo):
     D = [Eo*vet_campo[0], Eo*vet_campo[1], Eo*vet_campo[2]]
     return D
 
+def Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas):
+    if (raio_gausiana >= 0) and (raio_gausiana <= raio_esfer):
+        E=((1/(4*math.pi*Eo))*(valor_cargesf/(math.pow(raio_esfer,3)))*raio_gausiana)
+        return E
+    elif(raio_esfer<=raio_gausiana) and (raio_gausiana<=raioint_cas):
+        E=((1/(4*math.pi*Eo))*(valor_cargesf/math.pow(raio_gausiana,2)))
+        return E
+    elif (raio_gausiana >= raioint_cas and raio_gausiana <= raioext_cas):
+        E = 0
+        return E
+
+def Fluxo_de_Carga_Pontual(valor_carga):
+    Fluxo = valor_carga/Eo
+    return Fluxo
+
+
 
 
 ##################### Funções de Leitura ######################
@@ -141,6 +157,9 @@ def Ler_Carga():
     q = float(input("Carga: "))
     unidade = str(input("Qual a unidade? : ")).lower().strip()
 
+    if unidade == "norm": #(normal sem potencia)
+        q = q
+        return q
     if unidade == "mili":
         q = q*math.pow(10,-3)
         return q
@@ -198,10 +217,30 @@ def Ler_Info_Sup_de_Carga():#(Carga_Sup, eixo_norm, pos_eixo, pos_ref)
     vet = Superficie_de_carga(carga, eixo_norm, pos_eixo, pos_ref)
     return vet
 
+def Ler_Info_Volume_de_carga():
+    print("Valor da distribuição volumétrica de carga: ")
+    q1 = Ler_Carga()
+    print("Posição do centro da esfera: ")
+    pos1 = inserir_pv_cart()
+    print("Posição de referência: ")
+    pos_ref = inserir_pv_cart()
+    vet = Volume_de_carga(q1, pos1, pos_ref)
+    return vet
 
+def Ler_Info_Campo_esfera_Conc_Casca():
+    print("Qual o valor da carga uniforme da esfera? ")
+    q = Ler_Carga()
+    a = float(input('Qual o valor do raio da esfera?'))
+    b = float(input('Qual o valor do raio interno da casca esférica?'))
+    c = float(input('Qual o valor do raio externo da casca esférica?'))
+    r = float(input('Qual o valor do raio que deseja calcular o campo elétrico?'))
+    modulo = Campo_esfera_Conc_Casca(q, r, a, b, c)
+    return modulo
 
-
-
+def Ler_Info_Fluxo_de_Carga_Pontual():
+    q = Ler_Carga()
+    valor = Fluxo_de_Carga_Pontual(q)
+    return valor
 
 
 def Menu_eletrostatica():
@@ -215,9 +254,14 @@ def Menu_eletrostatica():
         print("# 5 - Campo de Linha Infinita de Cargas                        #")
         print("# 6 - Campo de Superfície de Cargas (plano)                    #")
         print("# 7 - Campo de Volume de Cargas (esfera)                       #")
-        print("# 8 - Mostrar Lista                                            #")
-        print("# 9 - limpar Lista                                             #")
-        print("# 10- Sair                                                     #")
+        print("# 8 - Módulo de campo elétrico concêntrica a uma casca         #")
+        print("# 9 - Densidade de Fluxo                                       #")
+        print("#10 - Fluxo de campo Elétrico de uma carga pontual             #")
+        print("#11 - Potencial Elétrico                                       #")
+        print("#12 - Diferença de Potencial Elétrico                          #")
+        print("#13 - Mostrar Lista                                            #")
+        print("#14 - limpar Lista                                             #")
+        print("#15- Sair                                                      #")
         print("################################################################")
         resp = int(input("# Número escolhido: "))
 
@@ -274,11 +318,17 @@ def Menu_eletrostatica():
         if resp == 7:
             print("Volume de Campo")
         if resp == 8:
+            modulo = Ler_Info_Campo_esfera_Conc_Casca()
+            print(" O modulo do campo elétrico nesse raio é {} V/m\n".format(modulo))
+        if resp == 10:
+            valor = Ler_Info_Fluxo_de_Carga_Pontual()
+            print("O fluxo elétrico da carga sobre a gaussiana é {} Nm²/c".format(valor))
+        if resp == 13:
             print("Mostrar Lista")
-        if resp == 9:
+        if resp == 14:
             print("A lista foi Limpa")
             Vet_info.clear()
-        if resp == 10:
+        if resp == 15:
             break
 
 
