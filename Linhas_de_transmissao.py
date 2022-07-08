@@ -1,49 +1,42 @@
 import math
 import numpy
-#from magnetostatica import camposmagneticos
 
-################### Instruções de Uso ##################
 
-# 1. Força magnética e força entre elementos de corrente.
-# 2. Capacitância
-# 3. Indutores, Indutância e Indutância Mútua
-# 4. Circuitos Magnéticos
-# 5. Campos Variáveis no tempo
+ # 1. Força magnética e força entre elementos de corrente.
+ # 2. Capacitância
+ # 3. Indutores, Indutância e Indutância Mútua
+ # 4. Circuitos Magnéticos
+ # 5. Campos Variáveis no tempo
 
 #Constantes
-MIo= 4*math.pi*math.pow(10, -7)
-Eo=float(8.85e-12)
+Uo= 4*math.pi*math.pow(10, -7)
+Eo=float(8.85e-12) #Epson
+Po=float(12.56e-7) #permissividade magnetica no vacuo
 
-#####################  Calcula a força magnetica devido uma carga  #####################
+#####################Calcula a força magnetica devido uma carga#####################
 def forca_magnetica(q,B,v,Teta):
-    #B= campomagnetico(); caso tenha que calcular o campo magnetico primeiro
-    #B=float(input("Valor do campo magnetico: (em Tesla)"))
-    #q=float(input("Digite o valor da carga elétrica: (em Coloumbs)"))
-    #Teta = float(input("Digite o angulo entre o Campo de a velocidade (em graus): "))
-    #Tetarad= numpy.radians(Teta);
-    #op = int(input("Digite a opção referente a seu angulo? 1-Graus     2-Radianos:"))
-    #v=float(input("Digite a velocidade (em m/s)"))
+    # B= campomagnetico(); caso tenha que calcular o campo magnetico primeiro
     Fm=abs(q)*v*B*math.sin(conv_angulo(Teta))
     Fm=cientific_format(Fm)
     print("A força magnetica que age sobre a carga é de ", Fm)
-    #return Fm
+    # return Fm
 
-############################  Conversor de graus para radianos  ############################
+############################    Conversor de graus para radianos    ############################
 def conv_angulo(T):
     Tetarad=numpy.radians(T)
     return Tetarad
 
-########################  Conversor de numeros para cientifico  ############################
+########################    Conversor de numeros para cientifico    ############################
 def cientific_format(X):
-    limitador= round(X,2)
+    limitador= round(X,3)
     formatado=numpy.format_float_scientific(limitador)
     return formatado
 
 
-#Força Magnetica entre condutores paralelos ou força entre elementos de corrente
-#Função ForcaM Calcula a Força Magnetica entre dois condutores
+ #Força Magnetica entre condutores paralelos ou força entre elementos de corrente
+ #Função ForcaM Calcula a Força Magnetica entre dois condutores
 def ForcaM(i1, i2, r, l):
-    FM=((MIo*i1*i2*l)/(2*math.pi*r))
+    FM=((Uo*i1*i2*l)/(2*math.pi*r))
     print("Força Magnetica entre dois elementos de corrente é igual a",FM)
     return FM
 
@@ -67,6 +60,43 @@ def calculator_capacitancia(Req,Deq):
     ln=math.log(Deq/(Req))
     capacitance=const/ln
     print("A capacitancia da linha é de " ,capacitance ,"F")
+
+def const_a(d):
+    d1=d/2
+    d2=d1*math.pow(math.e,-1/4)
+    return d2
+
+   # a= constante                b= distancia entre os fios (metros)
+def calculator_indutancia(a,b):
+    multipx=Po/math.pi
+    logzin=math.log(b/a)
+    indutance=multipx*logzin
+    print("A indutancia da linha é de " ,indutance ,"H/m")
+
+ #INDUTANCIA MUTUA
+def calculator_indutanciamutua(fem, I0, If, variatempo):
+    variacorrent = If - I0
+    didt = variacorrent / variatempo
+    if didt < 0:
+        didt = (variacorrent / variatempo) * -1
+    indutancemutua = fem / didt
+    print("A indutancia mutua é de ", indutancemutua, "H")
+
+def permeabilidade_mag(Uo, Ur):
+    U=Ur*Uo
+    return U
+
+def relutancia(l, u, a):
+    R=l/(u*a)
+    return R
+
+def fluxo_mag(B, a):
+    fluxo=B*a*math.pow(10,-2)
+    return fluxo
+
+def calc_corrente(n, f, r):
+    i=f*r/n
+    return i
 
 def Menu_Linhas_de_transmissao():
     print("################################################################")
@@ -105,20 +135,63 @@ def Menu_Linhas_de_transmissao():
         Req=raio_equivalente(20, 2.5)
         print(calculator_capacitancia(Req,Deq))
 
-        ####### Letra B #######
-
-
     ########################## Indutores, Indutancia e Indutancia Mútua ################
     if resp == 4:
-        print("nada ainda")
+        #INDUTANCIA
+        diametro = 0.00254 #Dado em metros
+        dist_fios = 3.05 #Dado em metros
+        a=const_a(diametro)
+        b=dist_fios
+        calculator_indutancia(a, b)
+
+        # INDUTANCIA MUTUA
+        fem=30*math.pow(10,3) # Força eletromotriz induzida (V)
+        I0= 6 # Corrente inicial (A)
+        If= 0 # Corrente final (A)
+        variatempo = 2.5e-3 #Variação do tempo (s)
+        calculator_indutanciamutua(fem, I0, If, variatempo)
 
     ##########################   Circuitos Magneticos   ##########################
     if resp == 5:
-        print("nada ainda")
+        #RELUTANCIA E PERMEABILIDADE MAGNETICA
+        a=0.04 #area (m^2)
+        Ur=80000 #Permeabilidade Relativa
+        B = 1  # Densidade fluxo magnetico (T)
+        n= 200  #Numero de espiras
+        u=permeabilidade_mag(Uo,Ur)
+        print("A permeabilidade magnética é de ", cientific_format(u))
+        l = 30 #Comprimento total
+        r=relutancia(l,u,a)
+        print("A relutância do circuito é de ", r, "Ae/Wb")
+
+        #FLUXO MAGNETICO
+        f=fluxo_mag(B,a)
+        print("O valor do fluxo magnetico é de ", f, "Wb")
+
+        #CORRENTE
+        i=calc_corrente(n,f,r)
+        print("A corrente encontrada é de ",cientific_format(i)," A")
 
     ##########################   Campos Variáveis no tempo   ##########################
     if resp == 6:
-        print("nada ainda")
+        ##########################   Campos Variáveis no tempo   ##########################
+        if resp == 6:
+            t = numpy.arange(0, 100, 1)  # tempo
+            Ro = 0.15  # variavel P(Ro)
+            r = 250  # resistencia
+            fi = 2 * math.pi
+            vcos = 120
+            B = 0.2  # *math.cos(120*math.pi*t)
+            flux = 0.2 * ((Ro * Ro) / 2) * fi  # *math.cos(120*math.pi*t)
+            fem = 0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi  # *math.sin(120*math.pi*t)
+            I = (0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi) / r  # *math.sin(120*math.pi*t)
+            Vab = -fem
+
+            print(B'')
+            print(flux)
+            print(fem)
+            print(I)
+            print(Vab)
 
 
 
