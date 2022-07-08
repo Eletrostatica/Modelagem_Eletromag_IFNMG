@@ -342,5 +342,5 @@ Menu_eletrostatica()
 #3. Campo elétrico em distribuição contínua de cargas (linhas de carga, superfície de cargas,
 #volume de cargas)(ok)
 #4. Densidade de fluxo elétrico(ok)
-#5. Lei de Gauss(ta indo, mas não foi até o presente momento)
+#5. Lei de Gauss(ok)
 #6. Potencial elétrico(---) 
