@@ -1,5 +1,8 @@
 # Modelagem_Eletromag_IFNMG
 Modelagem em Python - Eletromagnetismo
+## Exemplo do uso de imagem no repositório#
+<img src="imgteste.jpg" alt="My cool logo"/>
+
 
 #  Instruções de Uso da Biblioteca Eletrostatica.py  #
 
