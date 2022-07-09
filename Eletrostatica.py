@@ -1,7 +1,6 @@
 import math
 from trab_eletromag_analisevet import vet_uni,inserir_pv_cart
 #from numpy import format_float_scientific
-#import sympy
 
 
 
@@ -11,6 +10,7 @@ K= 9*math.pow(10,9)
 
 # Variáveis Globais
 Vet_info = []
+Vet_esc = []
 
 
 def add_info(info):
@@ -21,11 +21,20 @@ def add_info(info):
     elif op == "n":
         print("A informação não foi armazenada")
 
-def print_Vet_info():
-    for i in Vet_info:
+def add_info_escalar(info):
+    op = str(input("Deseja guardar essa informação? [s] ou [n] ")).lower()
+    if op == "s":
+        Vet_esc.append(info)
+        print("Informação amazenada com sucesso!!!")
+    elif op == "n":
+        print("A informação não foi armazenada")
+
+def print_Vet_info(vet):
+    for i in vet:
         print(" Na posição {} temos: {}\n".format(i, Vet_info[i]))
 
-def clear_Vet_info():
+def clear_Vet_info_and_esc():
+    Vet_esc.clear()
     Vet_info.clear()
     print("A lista está limpa!!!!")
 
@@ -149,29 +158,50 @@ def Fluxo_de_Carga_Pontual(valor_carga):
     Fluxo = valor_carga/Eo
     return Fluxo
 
+def Pontencial_Eletrico(valor_carga, pos_carga, pos_desejada, pos_refer, ddp_ref):
+    if (pos_refer == "inf") and (ddp_ref) == 0:
+        Tensao = valor_carga/(4*math.pi*Eo*Dist_p1_p2(pos_desejada, pos_carga))
+        return Tensao
+    else:
+        C = ddp_ref-((4*math.pi*Eo*Dist_p1_p2(pos_refer, pos_carga))/valor_carga)
+        Tensao = (valor_carga / (4 * math.pi * Eo * Dist_p1_p2(pos_desejada, pos_carga))) + C
+        return Tensao
 
+def Diferenca_de_Potencial(V1, V2):
+    ddp = V2 - V1
+    return ddp
 
+def Sobreposicao_de_Potencial_eletrico(vetor):
+    soma = 0
+    for i in range(0, len(vetor), 1):
+        soma = soma + vetor[i]
+    return soma
 
 ##################### Funções de Leitura ######################
-def Ler_Carga():
-    q = float(input("Carga: "))
+def Ler_unidade():
+
     unidade = str(input("Qual a unidade? : ")).lower().strip()
 
     if unidade == "norm": #(normal sem potencia)
-        q = q
-        return q
+        v = 1
+        return v
     if unidade == "mili":
-        q = q*math.pow(10,-3)
-        return q
+        v = math.pow(10,-3)
+        return v
     if unidade == "micro":
-        q = q*math.pow(10, -6)
-        return q
+        v = math.pow(10, -6)
+        return v
     if unidade == "nano":
-        q = q*math.pow(10, -9)
-        return q
+        v = math.pow(10, -9)
+        return v
     if unidade == "pico":
-        q = q*math.pow(10, -12)
-        return q
+        v = math.pow(10, -12)
+        return v
+
+def Ler_Carga():
+    q = float(input("Carga: "))
+    unidade = Ler_unidade()
+    return q*unidade
 
 def Ler_Info_Forca():
     print("Valor da carga q1 em Coulomb: ")
@@ -242,6 +272,28 @@ def Ler_Info_Fluxo_de_Carga_Pontual():
     valor = Fluxo_de_Carga_Pontual(q)
     return valor
 
+def Ler_Info_Potencial_eletrico():
+    print("Digite o Valor da carga 'q': ")
+    carga = Ler_Carga()
+    print("Qual a posição da sua carga? ")
+    pos_carga = inserir_pv_cart()
+    print("Qual a Posição que deseja calcular o Potencial Elétrico? ")
+    pos_desejada = inserir_pv_cart()
+    perg_referencia = str(input("Sua Referência é o Infinito com 0V? [s] ou [n] : ")).lower().strip()
+    if perg_referencia == "s":
+        return Pontencial_Eletrico(carga, pos_carga, pos_desejada, "inf", 0)
+    else:
+        print("Digite o ponto da Referência: ")
+        pos_ref = inserir_pv_cart()
+        ddp_ref = float(input("Qual o Potencial Elétrico neste ponto: "))
+        return Pontencial_Eletrico(carga, pos_carga, pos_desejada, pos_ref, ddp_ref)
+
+def Ler_Info_DDP():
+    V1 = float(input("Potencial Elétrico V1: "))
+    V2 = float(input("Potencial Elétrico V2: "))
+    return V2-V1
+
+
 
 def Menu_eletrostatica():
     while True:
@@ -259,9 +311,10 @@ def Menu_eletrostatica():
         print("#10 - Fluxo de campo Elétrico de uma carga pontual             #")
         print("#11 - Potencial Elétrico                                       #")
         print("#12 - Diferença de Potencial Elétrico                          #")
-        print("#13 - Mostrar Lista                                            #")
-        print("#14 - limpar Lista                                             #")
-        print("#15- Sair                                                      #")
+        print("#13 = Sobreposição de Potencial Elétrico                       #")
+        print("#14 - Mostrar Lista                                            #")
+        print("#15 - limpar Lista                                             #")
+        print("#16- Sair                                                      #")
         print("################################################################")
         resp = int(input("# Número escolhido: "))
 
@@ -323,18 +376,32 @@ def Menu_eletrostatica():
         if resp == 10:
             valor = Ler_Info_Fluxo_de_Carga_Pontual()
             print("O fluxo elétrico da carga sobre a gaussiana é {} Nm²/c".format(valor))
+        if resp == 11:
+            Pot = Ler_Info_Potencial_eletrico()
+            print("O Potencial elétrico a partir da carga informada é: {} V".format(Pot))
+            add_info(Pot)
+        if resp == 12:
+            DDP = Ler_Info_DDP()
+            print("A diferença de Potencial é: {} V".format(DDP))
         if resp == 13:
-            print("Mostrar Lista")
+            soma = Sobreposicao_de_Potencial_eletrico(Vet_info)
+            print("A soma dos Potenciais é: {} V".format(soma))
+
         if resp == 14:
-            print("A lista foi Limpa")
-            Vet_info.clear()
+            print_Vet_info(Vet_info)
         if resp == 15:
+            print("A lista foi Limpa")
+            clear_Vet_info_and_esc()
+        if resp == 16:
             break
+        else:
+            print("Não existe essa Opção!!!\n")
+
 
 
 Menu_eletrostatica()
             
-            
+# As funções já estão funcionando !!!       
             
             
 #1. Lei de coulomb, superposição de cargas pontuais (ok)
@@ -343,4 +410,4 @@ Menu_eletrostatica()
 #volume de cargas)(ok)
 #4. Densidade de fluxo elétrico(ok)
 #5. Lei de Gauss(ok)
-#6. Potencial elétrico(---) 
+#6. Potencial elétrico(ok) 
