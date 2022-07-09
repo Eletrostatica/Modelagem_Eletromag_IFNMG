@@ -6,11 +6,13 @@ Modelagem em Python - Eletromagnetismo
 
 #  Instruções de Uso da Biblioteca Eletrostatica.py  #
 
--> Dist_p1_p2(ponto1, ponto2); 
+**Dist_p1_p2(ponto1, ponto2)** 
+
 retorna a distância entre esses dois pontos, onde cada ponto é um vetor com (ax, ay, az).
 
 
-->  Vet_resultante(ponto1(vetor),ponto2(vetor)); 
+**Vet_resultante(ponto1(vetor),ponto2(vetor))**
+
 retorna o vetor ponto1-ponto2
 
 ->  Soma_vet((lista de vetores)); 
