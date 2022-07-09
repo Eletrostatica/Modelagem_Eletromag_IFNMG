@@ -42,10 +42,19 @@ Uma carga pontual de 1,8 μC está no centro de uma superfície gaussiana cúbic
 
 **Potencial Elétrico():**
 
-**Exemplo Potencial Elétrico:** Uma carga pontual está localizada na origem. Se V = 2V em (0,6,-8),determine:
+**Exemplo1 Potencial Elétrico:** Três cargas pontuais Qଵ = 1 mC, Qଶ = −2mC, Qଷ = 3 mC, estao localizadas, respectivamente, em (0,0,4), (-2,5,1) e (3,-4,6).
+
+a) Determine o potencial V௉ em P (-1,1,2)
+
+b) Calcule a diferença de potencial V௉ொ se Q (1,2,3)
+
+
+**Exemplo2 Potencial Elétrico:** Uma carga pontual está localizada na origem. Se V = 2V em (0,6,-8),determine:
 
 #a) O potencial em A(-3,2,6)
+
 #b) O potencial em B(1,5,7)
+
 #c) A diferença de potencial
 
 **INCOMPLETO !!!!!!!!!**
