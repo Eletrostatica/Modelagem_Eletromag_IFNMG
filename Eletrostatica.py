@@ -369,7 +369,9 @@ def Menu_eletrostatica():
             print("O campo gerado pela superficie inf é: {} V/m\n".format(Cs))
             add_info(Cs)
         if resp == 7:
-            print("Volume de Campo")
+            Cv = Ler_Info_Sup_de_Carga()
+            print("O campo gerado pela esfora é: {} V/m\n".format(Cv))
+            add_info(Cv)
         if resp == 8:
             modulo = Ler_Info_Campo_esfera_Conc_Casca()
             print(" O modulo do campo elétrico nesse raio é {} V/m\n".format(modulo))
@@ -381,12 +383,19 @@ def Menu_eletrostatica():
             print("O Potencial elétrico a partir da carga informada é: {} V".format(Pot))
             add_info(Pot)
         if resp == 12:
-            DDP = Ler_Info_DDP()
-            print("A diferença de Potencial é: {} V".format(DDP))
+            cond = str(input("Deseja usar as informações armazenadas? [N] ou [S] ")).upper().strip()
+            if cond == "N":
+                DDP = Ler_Info_DDP()
+                print("A diferença de Potencial é: {} V".format(DDP))
+            elif cond == "S":
+                pos1 = int(input("Se V_AB = V_B - V-A  ->  Em qual posição do vetor V_B está?   "))
+                pos2 = int(input("Qual a posição de V_A no vetor?  "))
+                result = Diferenca_de_Potencial(pos2, pos1)
+                print("A diferença de Potencial é: {} V".format(result))
         if resp == 13:
             soma = Sobreposicao_de_Potencial_eletrico(Vet_info)
             print("A soma dos Potenciais é: {} V".format(soma))
-
+            add_info_escalar(soma)
         if resp == 14:
             print_Vet_info(Vet_info)
         if resp == 15:
@@ -400,6 +409,7 @@ def Menu_eletrostatica():
 
 
 Menu_eletrostatica()
+
             
 # As funções já estão funcionando !!!       
             
