@@ -7,6 +7,7 @@ Modelagem em Python - Eletromagnetismo
 #  Instruções de Uso da Biblioteca Eletrostatica.py  #
 
 ### Funções Auxiliares
+**----------------------------------------------------------------------------------------**
 
 **add_info(info)**
 
@@ -35,6 +36,8 @@ retorna o vetor ponto1-ponto2
 **Soma_vet((lista de vetores))** 
 
 retorna um vetor, que é a soma dos vetores presentes na lista de vetores
+
+**----------------------------------------------------------------------------------------**
 
 ### Funções Específicas
 
