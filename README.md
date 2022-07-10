@@ -228,7 +228,7 @@ Recebe a carga (q), o valor do campo magnetico(B), a velocidade(v) e o angulo(Te
 
 **ForcaM(i1, i2, r, l)**
 
-Recebe o valor das duas correntes(i1 e i2), o raio (r) e o comprimento(l) e retorna o valor da força magnetica Força Magnetica entre os dois condutores. 
+Recebe o valor das duas correntes(i1 e i2), oa distancia entre os condutores (r) e o comprimento(l) e retorna o valor da força magnetica Força Magnetica entre os dois condutores. 
 
 **distancia_equivalente(d12,d23,d13)**
 
