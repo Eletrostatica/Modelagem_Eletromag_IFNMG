@@ -2,11 +2,10 @@ import math
 import numpy
 import magnetostatica from hlinha
 ############### NOMES ###############
-# - MARCOS VINICIUS VIEIRA BARNABE
-# -
-# -
-# -
-# -
+# - MARCOS VINICIUS                 #
+# - HADSON                          #
+# - JOÃO PAULO FERRAZ               #
+# - LUIZ GUSTAVO                    #
 #####################################
 
     ###################   Instruções de Uso    ##################
