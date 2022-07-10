@@ -136,6 +136,14 @@ Função para receber informações para calcular o campo elétrico em determina
 
 Função para receber informações para calcular o módulo do campo elétrico em uma esfera.
 
+**Ler_Densidade_Fluxo_cp()**
+
+Função para receber parametros do campo elétrico e calcular a densidade de fluxo.
+
+**Ler_Densidade_Fluxo_sp()**
+
+Função para receber as componentes vetoriais do campo elétrico e calcular a densidade de fluxo.
+
 **Ler_Info_Fluxo_de_Carga_Pontual()**
 
 Função para receber informações e calcular o módulo do fluxo de campo de uma carga pontual. 
