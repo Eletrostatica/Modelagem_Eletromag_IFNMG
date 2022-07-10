@@ -98,8 +98,15 @@ Recebe o potencial elétrico V1 e V2, e retorna a diferença de potencial V2-V1
 
 Recebe um vetor de potenciais elétricos e retorna a soma desses potencias elétricos contidos no vetor.
 
+**----------------------------------------------------------------------------------------**
 
-**INCOMPLETO !!!!!!!!!**
+### Funções de Leitura
+
+**----------------------------------------------------------------------------------------**
+
+
+
+
 
 **----------------------------------------------------------------------------------------**
 
