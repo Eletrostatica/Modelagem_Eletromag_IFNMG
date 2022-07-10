@@ -1,6 +1,6 @@
 import math
 import numpy
-
+import magnetostatica from hlinha
 ############### NOMES ###############
 # - MARCOS VINICIUS VIEIRA BARNABE
 # -
