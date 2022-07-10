@@ -104,11 +104,11 @@ Recebe um vetor de potenciais elétricos e retorna a soma desses potencias elét
 
 **----------------------------------------------------------------------------------------**
 
-*Ler_unidade()*
+**Ler_unidade()**
 
 Pergunta a Unidade de Medida utilizada sendo preciso digitar: "norm" -> 1 ; "mili" -> 10^-3 ; "micro" -> 10^-6 ; "nano" -> 10^-9 ; "pico" -> 10^-12 . Essa função retorna o escalar respectivo a unidade selecionada.
 
-*Ler_Carga()*
+**Ler_Carga()**
 
 Função para receber a carga pontual, distribuição superfícial e volumétrica
 
@@ -148,7 +148,7 @@ Função para receber informações e calcular o potencial elétrico em um deter
 
 Função para receber informações e calcular a diferença de potencial V2-V1.
 
-*Menu_eletrostatica()*
+**Menu_eletrostatica()**
 
 Função de Menu para o arquivo Eletrostatica.py, de forma que facilita o uso das funções ao executar o algoritmo
 
