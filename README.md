@@ -140,7 +140,7 @@ Função para receber informações para calcular o módulo do campo elétrico e
 
 Função para receber informações e calcular o módulo do fluxo de campo de uma carga pontual. 
 
-**Ler_Info_Potencial_eletrico()*
+**Ler_Info_Potencial_eletrico()**
 
 Função para receber informações e calcular o potencial elétrico em um determinado ponto.
 
