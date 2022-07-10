@@ -8,18 +8,35 @@ Modelagem em Python - Eletromagnetismo
 
 ### Funções Auxiliares
 
+**add_info(info)**
+
+Recebe uma Informação e Adiciona no vetor global Vet_info (usado para guardar informações vetoriais)
+
+**add_info_escalar(info)**
+
+Recebe uma Informação e Adiciona no vetor global Vet_esc (usado para guardar informações escalares)
+
+**print_Vet_info()**
+
+Exibe as informações no vetor global Vet_info
+
+**clear_Vet_info_and_esc()**
+
+Exclui dados armazenados nos Vetores Globais
+
 **Dist_p1_p2(ponto1, ponto2)** 
 
 retorna a distância entre esses dois pontos, onde cada ponto é um vetor com (ax, ay, az).
 
-
-**Vet_resultante(ponto1(vetor),ponto2(vetor))**
+**Vet_resultante(ponto1,ponto2)**
 
 retorna o vetor ponto1-ponto2
 
 **Soma_vet((lista de vetores))** 
 
 retorna um vetor, que é a soma dos vetores presentes na lista de vetores
+
+## Funções Específicas
 
 **Forca(carga1(escalar), posição da carga1(vetor), carga2(escalar), posição da carga2(vetor));**
 
