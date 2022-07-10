@@ -1,6 +1,14 @@
 import math
 import numpy
+import magnetostatica
 
+############### NOMES ###############
+# - MARCOS VINICIUS VIEIRA BARNABE
+# -
+# -
+# -
+# -
+#####################################
 
     ###################   Instruções de Uso    ##################
 
@@ -130,11 +138,12 @@ def integral():
     limit_sup = float(input("Coloque o limite superior: "))
     # Call trapezoidal() method and get result
     result = trapezoidal(limit_inf, limit_sup)
+    print(round(result,3))
     return result
 
-
 def Menu_Linhas_de_transmissao():
-    print("################################################################")
+    print("#########################     MENU     #########################")
+    print("#                                                              #")
     print("# Digite a opção desejada:                                     #")
     print("# 1 - Força magnética                                          #")
     print("# 2 - Força magnética entre dois condutores                    #")
@@ -151,28 +160,20 @@ def Menu_Linhas_de_transmissao():
 
         ######################################### Exemplo 1 ##########################################
         # Suponha que uma carga elétrica de 4 μC seja lançada em um campo magnético uniforme de 8 T. #
-        # Sendo de 60ºC o ângulo formado entre v e B, determine a força magnética que atua sobre a    #
-        # carga supondo que a mesma foi lançada com velocidade igual a 5x10³ m/s.                  #
+        # Sendo de 60ºC o ângulo formado entre v e B, determine a força magnética que atua sobre a   #
+        # carga supondo que a mesma foi lançada com velocidade igual a 5x10³ m/s.                    #
         ##############################################################################################
 
-        # Definindo valores das variaveis
-        q=4e-6 #Valor da carga (C)
+        q=4e-6     #Valor da carga (C)
         B=8        #Valor do campo magnetico (T)
         v=5000     #Velocidade (m/s)
         Teta=60    #Angulo (graus)
         Fm=forca_magnetica(q,B,v,Teta)   #Chamando a formula
         print("A força magnetica que age sobre a carga é de ", Fm)
-        integral()
         input("Pressione Enter para continuar")
 
     ########################### Força magnética entre dois condutores #############################
     if resp == 2:
-
-        ######################################### Exemplo 2 ##########################################
-        # Suponha que uma carga elétrica de 4 μC seja lançada em um campo magnético uniforme de 8 T. #
-        # Sendo de 60ºC o ângulo formado entre v e B, determine a força magnética que atua sobre a   #
-        # carga supondo que a mesma foi lançada com velocidade igual a 5x10³ m/s.                    #
-        ##############################################################################################
 
 
         #Definindo valores das variaveis
@@ -180,12 +181,18 @@ def Menu_Linhas_de_transmissao():
         i2= 4
         r= 0.03
         l= 0.1
-
         ForcaM(i1, i2, r, l)
         input("Pressione Enter para continuar")
+
     ########################### Capacitancia ###############
     if resp == 3:
-        ####### Letra A #######
+
+        ######################################### Exemplo 3 ##########################################
+        # Uma linha de tensão nominal 750kV tem 4 condutores por fase, como mostra a Imagem 1("LdT") #
+        # Considere que há transposição. O raio de cada condutor é igual a 2,5cm. A partir disso     #
+        # determine a capacitancia da linha                                                          #
+        ##############################################################################################
+
         Deq=distancia_equivalente(10,20,10)
         Req=raio_equivalente(20, 2.5)
         print(calculator_capacitancia(Req,Deq))
@@ -210,12 +217,20 @@ def Menu_Linhas_de_transmissao():
 
     ##########################   Circuitos Magneticos   ##########################
     if resp == 5:
+
+        ######################################### Exemplo 5 ##########################################
+        # Uma bobina está enrolada em núcleo com 4cm² de seção reta, material com                    #
+        # permeabilidade relativa de 80000, densidade de fluxo magnético B=1T, como mostra a Imagem  #
+        # 1 ("LdT") Calcule a relutância, fluxo e a corrente                                         #
+        ##############################################################################################
+
         #RELUTANCIA E PERMEABILIDADE MAGNETICA
         a=0.04 #area (m^2)
         Ur=80000 #Permeabilidade Relativa
         B = 1  # Densidade fluxo magnetico (T)
         n= 200  #Numero de espiras
         u=permeabilidade_mag(Uo,Ur)
+
         print("A permeabilidade magnética é de ", cientific_format(u))
         l = 30 #Comprimento total
         r=relutancia(l,u,a)
@@ -226,41 +241,31 @@ def Menu_Linhas_de_transmissao():
         print("O valor do fluxo magnetico é de ", f, "Wb")
 
         #CORRENTE
-        i=calc_corrente(n,f,r)
-        print("A corrente encontrada é de ",cientific_format(i)," A")
+        i=calc_corrente(n, f, r)
+        print("A corrente encontrada é de ", cientific_format(i)," A")
         input("Pressione Enter para continuar")
 
     ##########################   Campos Variáveis no tempo   ##########################
     if resp == 6:
-        ##########################   Campos Variáveis no tempo   ##########################
-        if resp == 6:
-            #t = numpy.arange(0, 100, 1)  # tempo
-            Ro = 0.15  # variavel P(Ro)
-            r = 250  # resistencia
-            fi = 2 * math.pi
-            #vcos = 120
-            B = 0.2  # *math.cos(120*math.pi*t)
-            flux = 0.2 * ((Ro * Ro) / 2) * fi  # *math.cos(120*math.pi*t)
-            fem = 0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi  # *math.sin(120*math.pi*t)
-            I = (0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi) / r  # *math.sin(120*math.pi*t)
-            Vab = -fem
+        #t = numpy.arange(0, 100, 1)  # tempo
+        Ro = 0.15  # variavel P(Ro)
+        r = 250  # resistencia
+        fi = 2 * math.pi
+        #vcos = 120
+        B = 0.2  # *math.cos(120*math.pi*t)
+        flux = 0.2 * ((Ro * Ro) / 2) * fi  # *math.cos(120*math.pi*t)
+        fem = 0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi  # *math.sin(120*math.pi*t)
+        I = (0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi) / r  # *math.sin(120*math.pi*t)
+        Vab = -fem
 
-            print(round(B,3),"* cos(120πt)")
-            print(round(flux,3),"* cos(120πt)")
-            print(round(fem,3),"* sin(120πt)")
-            print(round(I,3),"* sin(120πt)")
-            print("DDP = ",Vab)
-
+        print(round(B,3),"* cos(120πt)")
+        print(round(flux,3),"* cos(120πt)")
+        print(round(fem,3),"* sin(120πt)")
+        print(round(I,3),"* sin(120πt)")
+        print("DDP = " , Vab)
         input("Pressione Enter para continuar")
+
     return resp
 
 while Menu_Linhas_de_transmissao()!=7:
     Menu_Linhas_de_transmissao()
-
-
-
-# 1. Força magnética e força entre elementos de corrente.
-# 2. Capacitância
-# 3. Indutores, Indutância e Indutância Mútua
-# 4. Circuitos Magnéticos
-# 5. Campos Variáveis no tempo
