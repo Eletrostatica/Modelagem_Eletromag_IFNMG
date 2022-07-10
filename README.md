@@ -62,13 +62,31 @@ Recebe um vetor campo elétrico e retorna a intensidade (módulo)
 
 Recebe a Distribuição de carga na linha, os eixos na qual a linha está localizada (strings-> "x", "y" ou "z" , e a posição(escalar) de referência para retornar o vetor campo a partir dessa posição. **obs: não realiza o calculo caso a linha inf tenha 2 ou 3 eixos variando. Para usar a função, deverá ser respeitado a ordem x->y->z de forma que caso a linha esteja no eixo x, eixo1 = "y" e eixo2 = "z", caso a linha esteja no eixo y , eixo1 = "x" e eixo2 = "z", e por último, se estiver no eixo z, eixo1 = "x" e eixo2 = "y". Outra configuração resultará em erro!!!**
 
+**Superficie_de_carga(Carga_Sup, eixo_norm, pos_sup, ponto_ref)**
+
+Recebe a distribuição superficial de carga no plano, eixo da normal sendo "x" ou "y" ou "z", qual a posição neste eixo da normal, e o ponto de referência para calcular o campo. Essa função, retorna o vetor campo no ponto de referência.
+
+**Volume_de_carga(Carga_volum, pos_centro, pos_ref)**
+
+Recebe a distribuição volumétrica de carga, a posição do centro da esfera e qual a posição para calcular o campo. Retorna um vetor campo elétrico no ponto de referência.
+
+**Densidade_de_fluxo_cp(q1, pos1, pos_ref)**
+
+Recebe a carga, sua posição e a posição na qual quer calcular a densidade de fluxo e Retorna o vetor densidade de fluxo.
+
+**Densidade_de_fluxo_sp(vet_campo)**
+
+Recebe um vetor de campo e retorna o vetor densidade de fluxo.
+
+**Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas)**
+
+
+
 **Fluxo_de_Carga_Pontual(valor_carga)**
 
 
 
-**Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas)**
-
-**Potencial Elétrico():**
+**Pontencial_Eletrico(valor_carga, pos_carga, pos_desejada, pos_refer, ddp_ref)**
 
 **INCOMPLETO !!!!!!!!!**
 
