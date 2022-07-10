@@ -78,9 +78,9 @@ Recebe a carga, sua posição e a posição na qual quer calcular a densidade de
 
 Recebe um vetor de campo e retorna o vetor densidade de fluxo.
 
-**Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas)**
+**Campo_esfera(valor_cargesf, raio_gausiana, raio_esfer)**
 
-Essa função recebe valores da carga uniforme da esfera (valor_cargesf), raio da esfera (raio_esfer), raio interno da casca (raioint_cas), raio externo da casca (raioext_cas) e o raio de onde se deseja passar a gaussiana (raio_gausiana). Após receber esses valores do usuario, ela irá retorna o valor do módulo do campo elétrico.
+Essa função recebe valores da carga uniforme da esfera (valor_cargesf), raio da esfera (raio_esfer) e o raio de onde se deseja passar a gaussiana (raio_gausiana). Após receber esses valores do usuario, ela irá retorna o valor do módulo do campo elétrico.
 
 **Fluxo_de_Carga_Pontual(valor_carga)**
 
@@ -132,9 +132,9 @@ Função para receber informações para calcular o campo elétrico em determina
 
 Função para receber informações para calcular o campo elétrico em determinado ponto a partir de uma distribuição contínua de carga em uma esfera. Retorna o vetor campo elétrico em uma posição. 
 
-**Ler_Info_Campo_esfera_Conc_Casca()**
+**Ler_Info_Campo_esfera()**
 
-Função para receber informações para calcular o módulo do campo elétrico em uma esfera concentrica com casca.
+Função para receber informações para calcular o módulo do campo elétrico em uma esfera.
 
 **Ler_Info_Fluxo_de_Carga_Pontual()**
 
@@ -162,7 +162,7 @@ Função de Menu para o arquivo Eletrostatica.py, de forma que facilita o uso da
 
 **Exemplo para carga, linha inf e sup de cargas:** Uma carga pontual 100 pC está localizada em (4,1,-3), enquanto o eixo x está carregado com 2n C/m. Se o plano Z = 3 também estiver carregado com 5 n C/m² . Determine E no ponto (1,1,1).
 
-**Exemplo esfera concentrica:** Uma esfera maciça, de raio a = 2,00 cm, é concêntrica com uma casca esférica condutora de raio interno b = 2,00a e raio externo c = 2,40a. A esfera possui carga uniforme q1 = +5,00 fC, e a casca, uma carga q2 = –q1. Determine o módulo do campo elétrico (a) em r = a/2,00, (b), (c) em r = 2,30a  e (d) em r = 3,50a.
+**Exemplo campo esfera :** Uma esfera maciça, de raio a = 2,00 cm, possui carga uniforme q1 = +5,00 fC. Determine o módulo do campo elétrico (a) em r = a/2,00, (b)r = a e (c) em r = 2,30a.
 
 **Exemplo para fluxo de carga pontual**: Uma carga pontual de 1,8 μC está no centro de uma superfície gaussiana cúbica de 55 cm de aresta. Qual é o fluxo elétrico através da superfície?
 
