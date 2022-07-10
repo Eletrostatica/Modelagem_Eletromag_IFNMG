@@ -30,8 +30,8 @@ def add_info_escalar(info):
         print("A informação não foi armazenada")
 
 def print_Vet_info(vet):
-    for i in vet:
-        print(" Na posição {} temos: {}\n".format(i, Vet_info[i]))
+    for i in range(0, len(vet), 1):
+        print(" Na posição {} temos: {}\n".format(i, vet[i]))
 
 def clear_Vet_info_and_esc():
     Vet_esc.clear()
@@ -39,7 +39,7 @@ def clear_Vet_info_and_esc():
     print("A lista está limpa!!!!")
 
 def Dist_p1_p2(p1,p2):
-    dist = math.sqrt(math.pow(p1[0]-p2[0],2)+math.pow(p1[1]-p2[1],2)+math.pow(p1[2]-p2[2],2))
+    dist = math.sqrt(math.pow(p1[0]-p2[0], 2)+math.pow(p1[1]-p2[1], 2)+math.pow(p1[2]-p2[2], 2))
     return dist
 
 def Vet_resultante(p1,p2):
@@ -55,7 +55,6 @@ def Soma_vet(vetores):
         vet_result[2] = vet_result[2]+n_vet[2]
     return vet_result
 
-#Lei de Coulomb
 def Forca(q1, pos1, q2, pos2):
     dist = Dist_p1_p2(pos1, pos2)
     vet = vet_uni(Vet_resultante(pos1, pos2)[0],Vet_resultante(pos1, pos2)[1],Vet_resultante(pos1, pos2)[2])
@@ -143,15 +142,12 @@ def Densidade_de_fluxo_sp(vet_campo):
     D = [Eo*vet_campo[0], Eo*vet_campo[1], Eo*vet_campo[2]]
     return D
 
-def Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas):
+def Campo_esfera(valor_cargesf, raio_gausiana, raio_esfer):
     if (raio_gausiana >= 0) and (raio_gausiana <= raio_esfer):
-        E=((1/(4*math.pi*Eo))*(valor_cargesf/(math.pow(raio_esfer,3)))*raio_gausiana)
+        E = ((1/(4*math.pi*Eo))*(valor_cargesf/(math.pow(raio_esfer, 3)))*raio_gausiana)
         return E
-    elif(raio_esfer<=raio_gausiana) and (raio_gausiana<=raioint_cas):
-        E=((1/(4*math.pi*Eo))*(valor_cargesf/math.pow(raio_gausiana,2)))
-        return E
-    elif (raio_gausiana >= raioint_cas and raio_gausiana <= raioext_cas):
-        E = 0
+    elif raio_esfer <= raio_gausiana:
+        E = ((1/(4*math.pi*Eo))*(valor_cargesf/math.pow(raio_gausiana, 2)))
         return E
 
 def Fluxo_de_Carga_Pontual(valor_carga):
@@ -257,14 +253,29 @@ def Ler_Info_Volume_de_carga():
     vet = Volume_de_carga(q1, pos1, pos_ref)
     return vet
 
-def Ler_Info_Campo_esfera_Conc_Casca():
+def Ler_Densidade_Fluxo_cp():
+    print("Valor da carga q1 em Coulomb: ")
+    q1 = Ler_Carga()
+    print("Posição da carga q1: ")
+    pos1 = inserir_pv_cart()
+    print("Posição de referência: ")
+    pos_ref = inserir_pv_cart()
+    vet = Densidade_de_fluxo_cp(q1, pos1, pos_ref)
+    return vet
+
+def Ler_Densidade_Fluxo_sp():
+    E_x = float(input("Valor da componente a_x do campo: "))
+    E_y = float(input("Valor da componente a_y do campo: "))
+    E_z = float(input("Valor da componente a_z do campo: "))
+    vet = Densidade_de_fluxo_sp([E_x, E_y, E_z])
+    return vet
+
+def Ler_Info_Campo_esfera():
     print("Qual o valor da carga uniforme da esfera? ")
     q = Ler_Carga()
     a = float(input('Qual o valor do raio da esfera?'))
-    b = float(input('Qual o valor do raio interno da casca esférica?'))
-    c = float(input('Qual o valor do raio externo da casca esférica?'))
     r = float(input('Qual o valor do raio que deseja calcular o campo elétrico?'))
-    modulo = Campo_esfera_Conc_Casca(q, r, a, b, c)
+    modulo = Campo_esfera(q, r, a)
     return modulo
 
 def Ler_Info_Fluxo_de_Carga_Pontual():
@@ -294,7 +305,6 @@ def Ler_Info_DDP():
     return V2-V1
 
 
-
 def Menu_eletrostatica():
     while True:
         print("################################################################")
@@ -306,7 +316,7 @@ def Menu_eletrostatica():
         print("# 5 - Campo de Linha Infinita de Cargas                        #")
         print("# 6 - Campo de Superfície de Cargas (plano)                    #")
         print("# 7 - Campo de Volume de Cargas (esfera)                       #")
-        print("# 8 - Módulo de campo elétrico concêntrica a uma casca         #")
+        print("# 8 - Módulo de Campo Elétrico de Esfera                       #")
         print("# 9 - Densidade de Fluxo                                       #")
         print("#10 - Fluxo de campo Elétrico de uma carga pontual             #")
         print("#11 - Potencial Elétrico                                       #")
@@ -369,12 +379,20 @@ def Menu_eletrostatica():
             print("O campo gerado pela superficie inf é: {} V/m\n".format(Cs))
             add_info(Cs)
         if resp == 7:
-            Cv = Ler_Info_Sup_de_Carga()
+            Cv = Ler_Info_Volume_de_carga()
             print("O campo gerado pela esfora é: {} V/m\n".format(Cv))
             add_info(Cv)
         if resp == 8:
-            modulo = Ler_Info_Campo_esfera_Conc_Casca()
+            modulo = Ler_Info_Campo_esfera()
             print(" O modulo do campo elétrico nesse raio é {} V/m\n".format(modulo))
+        if resp == 9:
+            perg = str(input("Desaja adicionar os valores das componentes do campo [comp] ou informar carga e posições [info] :   ")).lower().strip()
+            if perg == "comp":
+                vet = Ler_Densidade_Fluxo_sp()
+                print("A densidade do fluxo para o campo informado é: {}C/m²\n".format(vet))
+            elif perg == "info":
+                vet = Ler_Densidade_Fluxo_cp()
+                print("A densidade do fluxo para o campo informado é: {}C/m²\n".format(vet))
         if resp == 10:
             valor = Ler_Info_Fluxo_de_Carga_Pontual()
             print("O fluxo elétrico da carga sobre a gaussiana é {} Nm²/c".format(valor))
