@@ -242,3 +242,19 @@ Calcula a corrente a partir de Ro, fi e a resistencia(r).
 Quetão se encontra na Imagem 4 ("LdT")
 
 **----------------------------------------------------------------------------------------**
+
+
+
+
+# Instruções de Uso da Biblioteca MAGNETOSTÁTICA.py #
+
+#........................OBSERVAÇÕES E RECOMENDAÇÕES........................
+
+PARA USAR AS FUNÇÕES DENTRO DESTE CÓDIGO LEIA PREVIAMENTE AS INSTRUÇÕES EM CADA UMA DELAS
+ALGUMAS DELAS ESTÃO FINALIZADAS E PODEM SER TRATADAS A PARTIR DO CONSOLE COM MAIOR FACILIDADE DE MANUSEIO
+OUTRAS, POR QUESTÃO DE COMPLEXIDADE, DEVEM SER TRATADAS INTERNAMENTE
+POR ISSO, NÃO ESTÃO PRESENTES DENTRO DO MENU E ***PRECISAM SER CHAMADAS***
+HÁ EXEMPLOS PARA FACILITAR COMPREENSÃO
+
+
+
