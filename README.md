@@ -80,15 +80,15 @@ Recebe um vetor de campo e retorna o vetor densidade de fluxo.
 
 **Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas)**
 
-
+Essa função recebe valores da carga uniforme da esfera (valor_cargesf), raio da esfera (raio_esfer), raio interno da casca (raioint_cas), raio externo da casca (raioext_cas) e o raio de onde se deseja passar a gaussiana (raio_gausiana). Após receber esses valores do usuario, ela irá retorna o valor do módulo do campo elétrico.
 
 **Fluxo_de_Carga_Pontual(valor_carga)**
 
-
+Essa função recebe o valor da carga pontual(valor_carga), e retorna o fluxo elétrico de uma superfície, após a divissão pelo E0.
 
 **Pontencial_Eletrico(valor_carga, pos_carga, pos_desejada, pos_refer, ddp_ref)**
 
-Recebe uma carga, a posição da carga, a posição desejada para o potencial elétrico, posição de refêrencia e o potencial elétrico na posição de referência.
+Recebe uma carga, a posição da carga, a posição desejada para o potencial elétrico, posição de refêrencia e o potencial elétrico na posição de referência.**Obs: Caso a posição de referência seja o infinito com 0 V, a função entende como pos_refer = "inf" e ddp_ref = 0**
 
 **Diferenca_de_Potencial(V1, V2)**
 
@@ -104,9 +104,53 @@ Recebe um vetor de potenciais elétricos e retorna a soma desses potencias elét
 
 **----------------------------------------------------------------------------------------**
 
+*Ler_unidade()*
 
+Pergunta a Unidade de Medida utilizada sendo preciso digitar: "norm" -> 1 ; "mili" -> 10^-3 ; "micro" -> 10^-6 ; "nano" -> 10^-9 ; "pico" -> 10^-12 . Essa função retorna o escalar respectivo a unidade selecionada.
 
+*Ler_Carga()*
 
+Função para receber a carga pontual, distribuição superfícial e volumétrica
+
+**Ler_Info_Forca()**
+
+Função para receber informações para calcular a força elétrica entre duas cargas. Retorna o vetor força na primeira carga.
+
+**Ler_Info_Campo()**
+
+Função para receber informações para calcular o campo elétrico em determinado ponto. Retorna o vetor campo na posição de referência.
+
+**Ler_Info_linha_Inf_Carga()**
+
+Função para receber informações para calcular o campo elétrico em determinado ponto a partir de um distribuição contínua de carga em uma linha infinita. Retorna o vetor campo elétrico em uma posição.
+
+**Ler_Info_Sup_de_Carga()**
+
+Função para receber informações para calcular o campo elétrico em determinado ponto a partir de uma distribuição contínua de carga em um plano infinito. Retorna o vetor campo elétrico em uma posição.
+
+**Ler_Info_Volume_de_carga()**
+
+Função para receber informações para calcular o campo elétrico em determinado ponto a partir de uma distribuição contínua de carga em uma esfera. Retorna o vetor campo elétrico em uma posição. 
+
+**Ler_Info_Campo_esfera_Conc_Casca()**
+
+Função para receber informações para calcular o módulo do campo elétrico em uma esfera concentrica com casca.
+
+**Ler_Info_Fluxo_de_Carga_Pontual()**
+
+Função para receber informações e calcular o módulo do fluxo de campo de uma carga pontual. 
+
+**Ler_Info_Potencial_eletrico()*
+
+Função para receber informações e calcular o potencial elétrico em um determinado ponto.
+
+**Ler_Info_DDP()**
+
+Função para receber informações e calcular a diferença de potencial V2-V1.
+
+*Menu_eletrostatica()*
+
+Função de Menu para o arquivo Eletrostatica.py, de forma que facilita o uso das funções ao executar o algoritmo
 
 **----------------------------------------------------------------------------------------**
 
@@ -119,6 +163,8 @@ Recebe um vetor de potenciais elétricos e retorna a soma desses potencias elét
 **Exemplo para carga, linha inf e sup de cargas:** Uma carga pontual 100 pC está localizada em (4,1,-3), enquanto o eixo x está carregado com 2n C/m. Se o plano Z = 3 também estiver carregado com 5 n C/m² . Determine E no ponto (1,1,1).
 
 **Exemplo esfera concentrica:** Uma esfera maciça, de raio a = 2,00 cm, é concêntrica com uma casca esférica condutora de raio interno b = 2,00a e raio externo c = 2,40a. A esfera possui carga uniforme q1 = +5,00 fC, e a casca, uma carga q2 = –q1. Determine o módulo do campo elétrico (a) em r = a/2,00, (b), (c) em r = 2,30a  e (d) em r = 3,50a.
+
+**Exemplo para fluxo de carga pontual**: Uma carga pontual de 1,8 μC está no centro de uma superfície gaussiana cúbica de 55 cm de aresta. Qual é o fluxo elétrico através da superfície?
 
 **Exemplo1 Potencial Elétrico:** Três cargas pontuais Q1 = 1 mC, Q2 = −2mC, Q3 = 3 mC, estao localizadas, respectivamente, em (0,0,4), (-2,5,1) e (3,-4,6).
 
@@ -135,7 +181,8 @@ b) O potencial em B(1,5,7)
 
 c) A diferença de potencial
 
-**----------------------------------------------------------------------------------------**
+
+
 
 #  Instruções de Uso da Biblioteca Linhas_de_transmissao.py  #
 
@@ -242,19 +289,3 @@ Calcula a corrente a partir de Ro, fi e a resistencia(r).
 Quetão se encontra na Imagem 4 ("LdT")
 
 **----------------------------------------------------------------------------------------**
-
-
-
-
-# Instruções de Uso da Biblioteca MAGNETOSTÁTICA.py #
-
-#........................OBSERVAÇÕES E RECOMENDAÇÕES........................
-
-PARA USAR AS FUNÇÕES DENTRO DESTE CÓDIGO LEIA PREVIAMENTE AS INSTRUÇÕES EM CADA UMA DELAS
-ALGUMAS DELAS ESTÃO FINALIZADAS E PODEM SER TRATADAS A PARTIR DO CONSOLE COM MAIOR FACILIDADE DE MANUSEIO
-OUTRAS, POR QUESTÃO DE COMPLEXIDADE, DEVEM SER TRATADAS INTERNAMENTE
-POR ISSO, NÃO ESTÃO PRESENTES DENTRO DO MENU E ***PRECISAM SER CHAMADAS***
-HÁ EXEMPLOS PARA FACILITAR COMPREENSÃO
-
-
-
