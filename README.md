@@ -6,7 +6,10 @@ Modelagem em Python - Eletromagnetismo
 
 #  Instruções de Uso da Biblioteca Eletrostatica.py  #
 
+**----------------------------------------------------------------------------------------**
+
 ### Funções Auxiliares
+
 **----------------------------------------------------------------------------------------**
 
 **add_info(info)**
@@ -40,6 +43,8 @@ retorna um vetor, que é a soma dos vetores presentes na lista de vetores
 **----------------------------------------------------------------------------------------**
 
 ### Funções Específicas
+
+**----------------------------------------------------------------------------------------**
 
 **Forca(carga1(escalar), posição da carga1(vetor), carga2(escalar), posição da carga2(vetor));**
 
