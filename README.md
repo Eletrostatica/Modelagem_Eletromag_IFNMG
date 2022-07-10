@@ -192,7 +192,7 @@ Calcula a corrente a partir de Ro, fi e a resistencia(r).
 
 
 **Exemplo 3 Capacitancia: ** Uma linha de tensão nominal 750kV tem 4 condutores por fase, como mostra a Imagem 1("LdT") Considere que há transposição. O raio de cada condutor é igual a 2,5cm. A partir disso determine a capacitancia da linha.
-<img src="Imagem 1("LdT").jpg" alt="My cool logo"/>
+<img src="Imagem 1(LdT).jpg" alt="My cool logo"/>
 
 **Exemplo 4 INDUTANCIA: ** A distância entre os centros dos cabos de uma linha monofásica é de 3,05m. Cada cabo é composto de 7 fios iguais de diâmetro 2,54mm. Determine a indutância por unidade por unidade de comprimento desta linha.
 
