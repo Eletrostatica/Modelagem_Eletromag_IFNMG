@@ -28,17 +28,17 @@ Exibe as informações no vetor global Vet_info
 
 Exclui dados armazenados nos Vetores Globais
 
-**Dist_p1_p2(ponto1, ponto2)** 
+**Dist_p1_p2(p1, p2)** 
 
-retorna a distância entre esses dois pontos, onde cada ponto é um vetor com (ax, ay, az).
+Recebe dois pontos e retorna a distância entre eles, onde cada ponto é um vetor com (ax, ay, az).
 
-**Vet_resultante(ponto1,ponto2)**
+**Vet_resultante(p1,p2)**
 
-retorna o vetor ponto1-ponto2
+Recebe dois Pontos e retorna o vetor ponto1-ponto2
 
-**Soma_vet((lista de vetores))** 
+**Soma_vet(vetores)** 
 
-retorna um vetor, que é a soma dos vetores presentes na lista de vetores
+Recebe um vetor de "vetores" e retorna um vetor que é a soma dos vetores presentes na lista de vetores
 
 **----------------------------------------------------------------------------------------**
 
@@ -46,11 +46,10 @@ retorna um vetor, que é a soma dos vetores presentes na lista de vetores
 
 **----------------------------------------------------------------------------------------**
 
-**Forca(carga1(escalar), posição da carga1(vetor), carga2(escalar), posição da carga2(vetor));**
+**Forca(q1, pos1, q2, pos2);**
 
-Retorna o vetor força, entre a carga1 e a carga 2 
+Recebe duas Cargas e suas respectivas posições, e retorna o vetor força na carga q1 que é um vetor (F_ax, F_ay, F_az) 
 
-**Exemplo** :Duas cargas pontuais de 1mC e -2mC, estão localizadas em (3,2,-1) e (-1,-1,4).Calcule a força elétrica sobre uma carga de 10nC, localizada em (0,3,1) e intensidade do campo elétrico nesse ponto.
 
 **Campo_eletrico(carga1, posição da carga1, posição de referência)**
 
@@ -85,4 +84,14 @@ b) Calcule a diferença de potencial V௉ொ se Q (1,2,3)
 #c) A diferença de potencial
 
 **INCOMPLETO !!!!!!!!!**
+
+**----------------------------------------------------------------------------------------**
+
+### EXEMPLOS
+
+**Exemplo de Força** :Duas cargas pontuais de 1mC e -2mC, estão localizadas em (3,2,-1) e (-1,-1,4).Calcule a força elétrica sobre uma carga de 10nC, localizada em (0,3,1) e intensidade do campo elétrico nesse ponto.
+
+**----------------------------------------------------------------------------------------**
+
+
 # -------------------------------------------------------- #
