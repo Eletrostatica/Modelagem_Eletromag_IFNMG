@@ -6,6 +6,8 @@ Modelagem em Python - Eletromagnetismo
 
 #  Instruções de Uso da Biblioteca Eletrostatica.py  #
 
+### Funções Auxiliares
+
 **Dist_p1_p2(ponto1, ponto2)** 
 
 retorna a distância entre esses dois pontos, onde cada ponto é um vetor com (ax, ay, az).
