@@ -1,14 +1,19 @@
 import math
 import numpy
-import magnetostatica from hlinha
-############### NOMES ###############
-# - MARCOS VINICIUS                 #
-# - HADSON                          #
-# - JOÃO PAULO FERRAZ               #
-# - LUIZ GUSTAVO                    #
-#####################################
 
-    ###################   Instruções de Uso    ##################
+####### Foram feitas apos terminamos o nosso mas podem ser usadas facilmente substituindo funções que criamos #######
+import magnetostatica from hlinha
+from 
+
+
+#############################  LINHAS DE TRANSMISSÃO  ################################
+
+############### NOMES ###############
+# - MARCOS VINICIUS VIEIRA BARNABE
+# - HADSON
+# - LUIZ GUSTAVO
+# - JOÃO PAULO FERRAZ
+#####################################
 
  # 1. Força magnética e força entre elementos de corrente.
  # 2. Capacitância
@@ -77,7 +82,6 @@ def const_a(d):
     return d2
 
 # a= constante                b= distancia entre os fios (metros)
-
 #####################    Calcula a indutancia    #####################
 def calculator_indutancia(a,b):
     multipx=Po/math.pi
@@ -139,6 +143,18 @@ def integral():
     print(round(result,3))
     return result
 
+def fluxo(Ro,fi):
+    flux=0.2 * ((Ro * Ro) / 2) * fi
+    return flux
+
+def Fem(Ro,fi):
+    fem = 0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi
+    return fem
+
+def corrent(Ro,fi,r):
+    I=(0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi) / r
+    return I
+
 def Menu_Linhas_de_transmissao():
     print("#########################     MENU     #########################")
     print("#                                                              #")
@@ -167,7 +183,7 @@ def Menu_Linhas_de_transmissao():
         v=5000     #Velocidade (m/s)
         Teta=60    #Angulo (graus)
         Fm=forca_magnetica(q,B,v,Teta)   #Chamando a formula
-        print("A força magnetica que age sobre a carga é de ", Fm)
+        print("A força magnetica que age sobre a carga é de ", Fm, "N")
         input("Pressione Enter para continuar")
 
     ########################### Força magnética entre dois condutores #############################
@@ -198,12 +214,24 @@ def Menu_Linhas_de_transmissao():
 
     ########################## Indutores, Indutancia e Indutancia Mútua ################
     if resp == 4:
+
+        ######################################### Exemplo 4 ##########################################
+        # A distância entre os centros dos cabos de uma linha monofásica é de 3,05m. Cada cabo é     #
+        # composto de 7 fios iguais de diâmetro 2,54mm. Determine a indutância por unidade por u-    #
+        # nidade de comprimento desta linha.                                                         #
+        ##############################################################################################
+
         #INDUTANCIA
         diametro = 0.00254 #Dado em metros
         dist_fios = 3.05 #Dado em metros
         a=const_a(diametro)
         b=dist_fios
         calculator_indutancia(a, b)
+
+        ######################################### Exemplo 5 ##########################################
+        # I1(t) diminui de 6A para zero em um tempo de 2,5 ms.Gerando uma Fem2 induzida de 30 KV;    #
+        # Qual a indutância mútua M ?                                                                #
+        ##############################################################################################
 
         # INDUTANCIA MUTUA
         fem=30*math.pow(10,3) # Força eletromotriz induzida (V)
@@ -216,10 +244,10 @@ def Menu_Linhas_de_transmissao():
     ##########################   Circuitos Magneticos   ##########################
     if resp == 5:
 
-        ######################################### Exemplo 5 ##########################################
+        ######################################### Exemplo 6 ##########################################
         # Uma bobina está enrolada em núcleo com 4cm² de seção reta, material com                    #
         # permeabilidade relativa de 80000, densidade de fluxo magnético B=1T, como mostra a Imagem  #
-        # 1 ("LdT") Calcule a relutância, fluxo e a corrente                                         #
+        # 3 ("LdT") Calcule a relutância, fluxo e a corrente                                         #
         ##############################################################################################
 
         #RELUTANCIA E PERMEABILIDADE MAGNETICA
@@ -245,22 +273,25 @@ def Menu_Linhas_de_transmissao():
 
     ##########################   Campos Variáveis no tempo   ##########################
     if resp == 6:
-        #t = numpy.arange(0, 100, 1)  # tempo
+        ######################################### Exemplo 7 ##########################################
+        #                                      Imagem 6 ("LdT")                                      #
+        ##############################################################################################
+
         Ro = 0.15  # variavel P(Ro)
         r = 250  # resistencia
         fi = 2 * math.pi
-        #vcos = 120
-        B = 0.2  # *math.cos(120*math.pi*t)
-        flux = 0.2 * ((Ro * Ro) / 2) * fi  # *math.cos(120*math.pi*t)
-        fem = 0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi  # *math.sin(120*math.pi*t)
-        I = (0.2 * ((Ro * Ro) / 2) * fi * 120 * math.pi) / r  # *math.sin(120*math.pi*t)
+
+        B = 0.2
+        flux = fluxo(Ro,fi)
+        fem = Fem(Ro,fi)
+        I = corrent(Ro,fi,r)
         Vab = -fem
 
-        print(round(B,3),"* cos(120πt)")
-        print(round(flux,3),"* cos(120πt)")
-        print(round(fem,3),"* sin(120πt)")
-        print(round(I,3),"* sin(120πt)")
-        print("DDP = " , Vab)
+        print("\nB= ", round(B,3), "* cos(120πt) T")
+        print("Fluxo= ", round(flux,3), "* cos(120πt) mW")
+        print("Fem= ", round(fem,3), "* sin(120πt) V")
+        print("I= ", round(I,3), "* sin(120πt) mA")
+        print("DDP= " , round(Vab,3), "* sin(120πt) V")
         input("Pressione Enter para continuar")
 
     return resp
