@@ -56,9 +56,15 @@ Recebe a carga(q1) responsável pelo campo e sua respectiva posicão (pos1), e a
 
 **Intensidade_Campo(vetc)**
 
+Recebe um vetor campo elétrico e retorna a intensidade (módulo)
+
+**Linha_inf_de_carga(Carga_linha, eixo1, eixo2, pos_eixo1,pos_eixo2, pos_ref)**
+
+Recebe a Distribuição de carga na linha, os eixos na qual a linha está localizada (strings-> "x", "y" ou "z" , e a posição(escalar) de referência para retornar o vetor campo a partir dessa posição. **obs: não realiza o calculo caso a linha inf tenha 2 ou 3 eixos variando. Para usar a função, deverá ser respeitado a ordem x->y->z de forma que caso a linha esteja no eixo x, eixo1 = "y" e eixo2 = "z", caso a linha esteja no eixo y , eixo1 = "x" e eixo2 = "z", e por último, se estiver no eixo z, eixo1 = "x" e eixo2 = "y". Outra configuração resultará em erro!!!**
+
 **Fluxo_de_Carga_Pontual(valor_carga)**
 
-Recebe um vetor campo elétrico e retorna a intensidade (módulo)
+
 
 **Campo_esfera_Conc_Casca(valor_cargesf, raio_gausiana, raio_esfer,raioext_cas,raioint_cas)**
 
