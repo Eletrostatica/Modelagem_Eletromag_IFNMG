@@ -90,6 +90,15 @@ Recebe um vetor de campo e retorna o vetor densidade de fluxo.
 
 Recebe uma carga, a posição da carga, a posição desejada para o potencial elétrico, posição de refêrencia e o potencial elétrico na posição de referência.
 
+**Diferenca_de_Potencial(V1, V2)**
+
+Recebe o potencial elétrico V1 e V2, e retorna a diferença de potencial V2-V1
+
+**Sobreposicao_de_Potencial_eletrico(vetor)**
+
+Recebe um vetor de potenciais elétricos e retorna a soma desses potencias elétricos contidos no vetor.
+
+
 **INCOMPLETO !!!!!!!!!**
 
 **----------------------------------------------------------------------------------------**
