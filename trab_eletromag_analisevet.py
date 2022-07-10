@@ -15,7 +15,7 @@ RO = C.RO; PHI = C.PHI; Z = C.Z
 S= CoordSys3D('S', transformation='spherical', vector_names=("r","teta", "phi"),variable_names =("R","TETA","PHI")) # coordenadas esféricas
 R= S.R; TETA= S.TETA; PHI= S.PHI
 
-B = CoordSys3D('N', transformation=lambda x,y,z: (RO*sin(PHI),RO*cos(PHI), Z))
+
 
 
 
@@ -132,9 +132,9 @@ def produto_escalar():
 #--------------- FUNÇÕES AUXILIARES DO TIPO INPUT ----------------------------------
 
 def inserir_pv_cart(): #função input para ler um ponto ou vetor em coordenadas cartesianas
-    a= Any((input("Valor de x: ")))
-    b= Any((input("Valor de y: ")))
-    c= Any((input("Valor de z: ")))  
+    a= float((input("Valor de x: ")))
+    b= float((input("Valor de y: ")))
+    c= float((input("Valor de z: ")))  
 
     return a, b, c
 
@@ -159,7 +159,13 @@ def inserir_pv_esfer(): #função input para ler um ponto ou vetor em coordenada
 def ponto_cart_cilind(x, y, z): #converte um ponto em coordenadas cartesianas para coordenadas cilíndricas
 
     ro= round(math.sqrt(x**2 + y**2), 2)
-    if x==0:
+    if x<0 and y>0:
+        phi= round(math.degrees(math.atan((y/x)) ), 2) + 90
+    elif x<0 and y<0:
+        phi= round(math.degrees(math.atan((y/x)) ), 2) + 180
+    elif x>0 and y<0:
+        phi = 360 + round(math.degrees(math.atan((y/x)) ), 2)
+    elif x==0:
         phi= 90.0
     else:
         phi= round(math.degrees(math.atan((y/x))), 2)
@@ -171,8 +177,20 @@ def ponto_cart_esfer(x, y, z): #converte um ponto em coordenadas cartesianas par
   
     r= round(math.sqrt(x**2 + y**2 + z**2), 2)
     teta= round(math.degrees(math.atan((math.sqrt(x**2 + y**2)/z))), 2)
-    phi= round(math.degrees(math.atan(y/x)), 2)
-
+    
+    
+    if x<0 and y>0:
+        phi= round(math.degrees(math.atan((y/x)) ), 2) + 90
+    elif x<0 and y<0:
+        phi= round(math.degrees(math.atan((y/x)) ), 2) + 180
+    elif x>0 and y<0:
+        phi = 360 + round(math.degrees(math.atan((y/x)) ), 2)
+    elif x==0:
+        phi= 90.0
+    else:
+        phi= round(math.degrees(math.atan((y/x))), 2)
+    
+    
     return[r, teta, phi]
 
 def ponto_cilind_cart(ro, phi, z): #converte um ponto em coordenadas cartesianas para coordenadas cilíndricas
@@ -206,23 +224,10 @@ def vet_uni(a, b, c):
 
     return [ax, ay, az]
 
-def prod_esc(a, b, c, d, e, f):      # **não está pronto
-    AB = a*d + b*e + c*f
-
-    return AB
-
-
-'''def vetor_cart_cilind(ax, ay, az):        **não está pronto
-    a=ax
-    b=ay
-    N.x= C.RO* spy.cos(C.PHI)
-    N.y= C.RO* spy.sin(C.PHI)
-    a=ax
-    b=ay
-    aro= a*spy.cos(C.PHI) + b*spy.sin(C.PHI)
-    aphi= b*spy.cos(C.PHI) - a*spy.sin(C.PHI)
+def prod_esc(vetor1, vetor2):     
     
-    return aro*C.ro + aphi*C.phi '''
+    return vetor1 & vetor2
+
 
 def prod_vet(a=0, b=0, c=0, d=0, e=0, f=0):
     v1= a*N.i + b*N.j + c*N.k
