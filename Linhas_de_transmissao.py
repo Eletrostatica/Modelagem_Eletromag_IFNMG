@@ -188,6 +188,12 @@ def Menu_Linhas_de_transmissao():
 
     ########################### Força magnética entre dois condutores #############################
     if resp == 2:
+        
+        ######################################### Exemplo 2 ##########################################
+        # Calcule a força magnetica entre dois condutores paralelos com comprimento de 10 cm cada e  #
+        # separados por uma distancia de 3 cm, onde o primeiro condutor possui uma corrente de 1,5 A #
+        # e o segundo condutor de 4,0 A,                                                             #
+        ##############################################################################################
 
 
         #Definindo valores das variaveis
