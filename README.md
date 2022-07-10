@@ -88,6 +88,8 @@ Recebe um vetor de campo e retorna o vetor densidade de fluxo.
 
 **Pontencial_Eletrico(valor_carga, pos_carga, pos_desejada, pos_refer, ddp_ref)**
 
+Recebe uma carga, a posição da carga, a posição desejada para o potencial elétrico, posição de refêrencia e o potencial elétrico na posição de referência.
+
 **INCOMPLETO !!!!!!!!!**
 
 **----------------------------------------------------------------------------------------**
