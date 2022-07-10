@@ -83,6 +83,8 @@ def conversao_de_pontos():
         i= inserir_pv_esfer()
         print(ponto_esfer_cart(i[0], i[1], i[2]))
 
+#------------------------- VETOR UNITÁRIO-----------------------------------        
+        
 def calcular_vetor_unitario(): #calcula o vetor unitário
     print("O ponto a partir do qual deve-se calcular o vetor unitário está em quais coordenadas? \n")
     print("Coordenadas cartesianas               DIGITE 1")
@@ -102,6 +104,9 @@ def calcular_vetor_unitario(): #calcula o vetor unitário
         j= ponto_esfer_cart(i[0], i[1], i[2])
         k= vet_uni(j[0], j[1], j[2])
         print(ponto_cart_esfer(k[0], k[1], k[2]))
+        
+        
+#-------------------------PRODUTO ESCALAR---------------------------------------------        
 
 def produto_escalar():
     print("Os vetores em que será feito o produto escalar estão em quais coordenadas? \n")
