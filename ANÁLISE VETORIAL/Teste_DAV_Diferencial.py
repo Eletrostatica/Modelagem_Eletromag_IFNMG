@@ -14,6 +14,11 @@
 ############################################### FIM DAS INSTRUÇÕES ###############################################
 
 
+# Livro utilizados
+# Fundamentos Circuitos Elétricos 3ª Ed
+# Fundamentos Circuitos Elétricos 5ª Ed
+
+
 import DAV_Diferencial
 from DAV_Diferencial import *
 
