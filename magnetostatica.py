@@ -167,11 +167,7 @@ def biotsavart():
     
     h=spy.integrate(dh, (C.PHI, 0,2*np.pi))
     
-    return display(h,"A/m")
-    
-    
-biotsavart()
-    
+    return display(h,"A/m")   
 
 
 #........................LEI CIRCUITAL DE AMPERE...............................
