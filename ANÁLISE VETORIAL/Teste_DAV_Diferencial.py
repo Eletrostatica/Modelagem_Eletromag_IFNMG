@@ -1,3 +1,19 @@
+##################################################################################################################
+################################################### INSTRUÇÕES ###################################################
+
+# As variaveis A e B utilizadas nas funções para calcular o DESLOCAMENTO DIFERENCIAL, AREA DIFERENCIAL E VOLUME 
+# DIFERENCIAL, são os pontos de onde o diferencial será calculado, assim A e B são vetores de 3 posições cada.
+# Assim o input desses pontos ou as variações em cada eixo pode ser feito dessa maneira:
+#                                             A = [valor, valor, valor];
+#                                             B = [valor, valor, valor];
+# Caso a variavel do eixo seja constante basta colocar o mesmo valor no dois vetores
+
+# Além disso nos coordenadas cilintricas e esfericas, o valor de theta ou phi deve estar em radianos
+
+##################################################################################################################
+############################################### FIM DAS INSTRUÇÕES ###############################################
+
+
 import DAV_Diferencial
 from DAV_Diferencial import *
 

@@ -1,3 +1,35 @@
+##########################################################################################################################
+####################################################### INSTRUÇÕES #######################################################
+#
+# As variaveis A e B utilizadas nas funções para calcular as INTEGRAIS, tanto de LINHA, como de ÁREA, como também 
+# de VOLUME, assim A e B são vetores de 3 posições cada.
+# Assim o input desses pontos ou as variações em cada eixo pode ser feito dessa maneira:
+#                                             A = [valor, valor, valor];
+#                                             B = [valor, valor, valor];
+# Caso a variavel do eixo seja constante, como o raio na coordenada esferica, colocar o valor de r no vetor A,
+# a primeira possição do vetor A, como 0 e colocar o valor na constante em B.
+#
+# V é a função que será integrada, ela é um vetor de 3 posições, uma posição para cada dimensão, seja ela cartesiana,
+# cilintricas ou esfericas.
+# Independente da coordenada os valores para as variaves utilizadas em V, serão x, y e z, ou seja:
+#                                           Cilintrica       ρ (rô)  = x
+#                                                            ϕ (phi) = z
+#                                                                  z = z
+#                                         
+#                                           Esférica         r       = x
+#                                                            θ       = y
+#                                                            ϕ (phi) = z
+#              
+# Além disso, nos coordenadas cilintricas e esfericas, o valor de theta ou phi deve estar em radianos. Ainda, cada função
+# deve ser alimentada com sua respectiva coordenada
+#
+# Por fim, para calcular a INTEGRAL CIRCULAÇÃO, basta utilizar a integral de linha, de sua respectiva coordenada e, 
+# para cada caminho utilizado e somar o resuldo de cada caminho integrado, que teremos o valor da integral de circulação
+#
+##########################################################################################################################
+################################################### FIM DAS INSTRUÇÕES ###################################################
+
+
 import Integral_LCFV
 from Integral_LCFV import *
 import sympy
@@ -100,14 +132,14 @@ from math import e
 ############################### Integral de Fluxo/Área #################################
 # Problema 3.8 - 5ed - pg 86
 # Cartesiana
-V = [10*x*e**(-2), 10*x*e**(0), 1*e**(-2*z)];
-V = [4*x*z, -y**2, y*z];
-A = [0, 0, 0];
-B = [1, 1, 1];
+# V = [10*x*e**(-2), 10*x*e**(0), 1*e**(-2*z)];
+# V = [4*x*z, -y**2, y*z];
+# A = [0, 0, 0];
+# B = [1, 1, 1];
 
-print(IntegA_cart(V,A,B));
+# print(IntegA_cart(V,A,B));
 
-# Exemplo 3.7 - 5ed - pg 67
+# Exemplo 3.7 - 5ed - pg 67 - R.: pg 60
 # Cartesiana
 # V = [10*x*e**(-2*x), 0, 10*e**(-2*z)];
 # A = [0, 0, 0];
@@ -149,4 +181,3 @@ print(IntegA_cart(V,A,B));
 # Esf2 = [4, pi, 2*pi];
 # print(IntegVol_Esfer(V2, Esf1, Esf2));
 # Resposta do livro está está errada | a integral de cos^2(phi) foi feita errada [De novo]
-
