@@ -29,9 +29,13 @@ def add_info_escalar(info):
     elif op == "n":
         print("A informação não foi armazenada")
 
-def print_Vet_info(vet):
+def print_Vet_info_and_esc(vet, vet2):
+    print("Para o vetor de vetores, temos: \n")
     for i in range(0, len(vet), 1):
         print(" Na posição {} temos: {}\n".format(i, vet[i]))
+    print("\nPara o vetor de escalares, temos: \n")
+    for i in range(0, len(vet2), 1):
+        print(" Na posição {} temos: {}\n".format(i, vet2[i]))
 
 def clear_Vet_info_and_esc():
     Vet_esc.clear()
@@ -159,7 +163,7 @@ def Pontencial_Eletrico(valor_carga, pos_carga, pos_desejada, pos_refer, ddp_ref
         Tensao = valor_carga/(4*math.pi*Eo*Dist_p1_p2(pos_desejada, pos_carga))
         return Tensao
     else:
-        C = ddp_ref-((4*math.pi*Eo*Dist_p1_p2(pos_refer, pos_carga))/valor_carga)
+        C = ddp_ref-(valor_carga/(4*math.pi*Eo*Dist_p1_p2(pos_refer, pos_carga)))
         Tensao = (valor_carga / (4 * math.pi * Eo * Dist_p1_p2(pos_desejada, pos_carga))) + C
         return Tensao
 
@@ -304,7 +308,6 @@ def Ler_Info_DDP():
     V2 = float(input("Potencial Elétrico V2: "))
     return V2-V1
 
-
 def Menu_eletrostatica():
     while True:
         print("################################################################")
@@ -399,7 +402,7 @@ def Menu_eletrostatica():
         if resp == 11:
             Pot = Ler_Info_Potencial_eletrico()
             print("O Potencial elétrico a partir da carga informada é: {} V".format(Pot))
-            add_info(Pot)
+            add_info_escalar(Pot)
         if resp == 12:
             cond = str(input("Deseja usar as informações armazenadas? [N] ou [S] ")).upper().strip()
             if cond == "N":
@@ -408,28 +411,23 @@ def Menu_eletrostatica():
             elif cond == "S":
                 pos1 = int(input("Se V_AB = V_B - V-A  ->  Em qual posição do vetor V_B está?   "))
                 pos2 = int(input("Qual a posição de V_A no vetor?  "))
-                result = Diferenca_de_Potencial(pos2, pos1)
+                result = Diferenca_de_Potencial(Vet_esc[pos2], Vet_esc[pos1])
                 print("A diferença de Potencial é: {} V".format(result))
         if resp == 13:
             soma = Sobreposicao_de_Potencial_eletrico(Vet_info)
             print("A soma dos Potenciais é: {} V".format(soma))
             add_info_escalar(soma)
         if resp == 14:
-            print_Vet_info(Vet_info)
+            print_Vet_info_and_esc(Vet_info, Vet_esc)
         if resp == 15:
-            print("A lista foi Limpa")
             clear_Vet_info_and_esc()
         if resp == 16:
             break
-        else:
-            print("Não existe essa Opção!!!\n")
 
 
 
 Menu_eletrostatica()
-
-            
-# As funções já estão funcionando !!!       
+      
             
             
 #1. Lei de coulomb, superposição de cargas pontuais (ok)
