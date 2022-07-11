@@ -72,7 +72,30 @@ r, phi, teta = symbols('r phi teta')
 
 #---------------- FUNÇÕES ------------------------------------------------------------------
 
+
 #-----CONVERSÃO DE PONTOS ENTRE COORDENADAS----------
+
+'''Depois de escolher a opção que irá ocorrer a conversão entre as coordenadas, basta entrar com os valores de cada direção.
+Exemplos: 
+1. Ao escolher a opção 1 (cartesiana -> cilíndrica), o ponto (3, 4, 5) será transformado em:
+[5.0, 53.13, 5.0]
+>>>conversao_de_pontos()
+>>>(-3, 4, 5)
+[5.0, 36.87, 5.0]
+
+>>>conversao_de_pontos()
+>>>(3, -4, 5)
+[5.0, 306.87, 5.0]
+
+>>>conversao_de_pontos()
+>>>(-3, -4, 5)
+[5.0, 233.13, 5.0]
+
+2. Ao escolher a opção 2 (cilíndrica -> cartesiana), o ponto (5, 60 (em graus), 3) será transformado em:
+>>>conversao_de_pontos()
+>>>(5, 60, 3)
+[2.5, 4.33, 3.0]
+'''
 def conversao_de_pontos():
     print("A conversão de pontos será entre quais coordenadas?")
     print("Cartesiana --> Cilíndrica               DIGITE 1")
@@ -93,7 +116,22 @@ def conversao_de_pontos():
         i= inserir_pv_esfer()
         print(ponto_esfer_cart(i[0], i[1], i[2]))
 
+
 #-----VETOR UNITÁRIO-----
+
+'''
+Depois de escolher a opção que irá ocorrer o calculo do vetor unitário, basta entrar com os valores de cada direção.
+Exemplo 1 (opção 1 = coordenada cartesiana): 
+>>>calcular_vetor_unitario()
+>>>(-5, 0, 2)
+[-0.93, 0.0, 0.37]
+
+Exemplo 2 (opção 2 = coordecnada cilíndrica):
+>>>calcular_vetor_unitario()
+>>>(3, 60, 5)
+[0.52, 59.98, 0.86]
+'''
+
 def calcular_vetor_unitario(): #calcula o vetor unitário em coordenadas cartesianas, cilíndricas ou esféricas
     print("O ponto a partir do qual deve-se calcular o vetor unitário está em quais coordenadas? \n")
     print("Coordenadas cartesianas               DIGITE 1")
