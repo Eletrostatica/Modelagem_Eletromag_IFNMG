@@ -118,7 +118,7 @@ def Superficie_de_carga(Carga_Sup, eixo_norm, pos_sup, ponto_ref):
             const = (Carga_Sup)/(2*Eo)
             Campo_result = [0, const, 0]
             return Campo_result
-        elif ponto_ref['0'] < pos_sup:
+        elif ponto_ref[1] < pos_sup:
             const = (Carga_Sup) / (2 * Eo)
             Campo_result = [0, -1*const, 0]
             return Campo_result
