@@ -327,7 +327,7 @@ def ponto_cart_cilind(x, y, z): #converte um ponto em coordenadas cartesianas pa
 
     ro= round(math.sqrt(x**2 + y**2), 2)
     if x<0 and y>0:
-        phi= round(math.degrees(math.atan((y/x)) ), 2) + 90
+        phi= round(math.degrees(math.atan((y/x)) ), 2) + 180
     elif x<0 and y<0:
         phi= round(math.degrees(math.atan((y/x)) ), 2) + 180
     elif x>0 and y<0:
@@ -346,7 +346,7 @@ def ponto_cart_esfer(x, y, z): #converte um ponto em coordenadas cartesianas par
     teta= round(math.degrees(math.atan((math.sqrt(x**2 + y**2)/z))), 2)
 
     if x<0 and y>0:
-        phi= round(math.degrees(math.atan((y/x)) ), 2) + 90
+        phi= round(math.degrees(math.atan((y/x)) ), 2) + 180
     elif x<0 and y<0:
         phi= round(math.degrees(math.atan((y/x)) ), 2) + 180
     elif x>0 and y<0:
