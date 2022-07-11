@@ -17,48 +17,48 @@ def Menu_analise_vetorial():
 
     resp = int(input("# Número escolhido: "))
 
-    ############################## Força elétrica ###########################
+    ############################## Conversão de coordenadas cartesianas esféricas, cilíndricas (pontos e vetores) ###########################
     if resp == 1:
 
        
 
-        # Definindo valores das variaveis
+    
         
         input("Pressione Enter para continuar")
 
-    ########################### Força magnética entre dois condutores #############################
+    ###########################  Cálculo de vetores unitários  #############################
     if resp == 2:
 
        
 
-        #Definindo valores das variaveis
         
         input("Pressione Enter para continuar")
-    ########################### Capacitancia ###############
+    ########################### Produto escalar, produto vetorial ###############
     if resp == 3:
-        ####### Letra A #######
        
         input("Pressione Enter para continuar")
 
-    ########################## Indutores, Indutancia e Indutancia Mútua ################
+    ########################## Deslocamento diferencial, área diferencial, volume diferencial (dl, dS, dV)  ################
     if resp == 4:
-        #INDUTANCIA
+      
         
         input("Pressione Enter para continuar")
 
-    ##########################   Circuitos Magneticos   ##########################
+    ##########################   Integral de linha, integral de circulação, integral de fluxo, integral de volume  ##########################
     if resp == 5:
-        #RELUTANCIA E PERMEABILIDADE MAGNETICA
-        
+      
         
        
         input("Pressione Enter para continuar")
 
-    ##########################   Campos Variáveis no tempo   ##########################
+    ##########################   Gradiente, divergente, rotacional, laplaciano.   ##########################
     if resp == 6:
-        ##########################   Campos Variáveis no tempo   ##########################
+              
+        input("Pressione Enter para continuar")
+    
+    if resp == 7:
+    ##########################   Teorema da divergência e teorema de Stokes    ##########################
       
-
         input("Pressione Enter para continuar")
     return resp
 
