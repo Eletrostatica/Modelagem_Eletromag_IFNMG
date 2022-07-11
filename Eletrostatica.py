@@ -2,7 +2,7 @@ import math
 from trab_eletromag_analisevet import vet_uni,inserir_pv_cart
 #from numpy import format_float_scientific
 
-
+# INSTRUÇÕES EM: https://github.com/Eletrostatica/Modelagem_Eletromag_IFNMG/blob/main/README.md
 
 # Constantes
 Eo= (math.pow(10,-9))/(36*math.pi)
