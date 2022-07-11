@@ -333,26 +333,22 @@ def Menu_eletrostatica():
         print("################################################################")
         resp = int(input("# Número escolhido: "))
 
-        ############################## Força elétrica ###########################
+        
         if resp == 1:
             vet = Ler_Info_Forca()
             F = Forca(vet[0], vet[1], vet[2], vet[3])
             print("A Força entre q1 e q2 é: Fe = {} N\n".format(F))
             add_info(F)
-        ########################### Campo Elétrico #############################
         if resp == 2:
             vet = Ler_Info_Campo()
             Ce = Campo_eletrico(vet[0], vet[1], vet[2])
             print("O campo elétrico em {} é: Ce = {} V/m\n".format(vet[2], Ce))
             add_info(Ce)
-        ########################### Intensidade de Campo elétrico ###############
         if resp == 3:
             print("Digite o vetor do campo elétrico, para saber sua intensidade: ")
             Campo = inserir_pv_cart()
             I = Intensidade_Campo(Campo)
             print("A intensidade do campo elétrico {} V/m é = {} V/m".format(Campo, I))
-
-        ########################## Sobreposição de Força ou Campo ################
         if resp == 4:
             tipo = str(input("Será superposição de Força ou Campo? [N]->Força ou [C]-> Campo ")).upper()
             perg = str(input("Deseja usar as informações armazenadas? [N] ou [S] ")).upper().strip()
