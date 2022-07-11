@@ -59,6 +59,8 @@ def Soma_vet(vetores):
         vet_result[2] = vet_result[2]+n_vet[2]
     return vet_result
 
+#--------------------- Funções Específicas ---------------------------
+
 def Forca(q1, pos1, q2, pos2):
     dist = Dist_p1_p2(pos1, pos2)
     vet = vet_uni(Vet_resultante(pos1, pos2)[0],Vet_resultante(pos1, pos2)[1],Vet_resultante(pos1, pos2)[2])
@@ -177,7 +179,7 @@ def Sobreposicao_de_Potencial_eletrico(vetor):
         soma = soma + vetor[i]
     return soma
 
-##################### Funções de Leitura ######################
+#---------------------------- Funções de Leitura -----------------------
 def Ler_unidade():
 
     unidade = str(input("Qual a unidade? : ")).lower().strip()
