@@ -20,11 +20,7 @@ def Menu_analise_vetorial():
     ############################## Força elétrica ###########################
     if resp == 1:
 
-        ######################################### Exemplo 1 ##########################################
-        # Suponha que uma carga elétrica de 4 μC seja lançada em um campo magnético uniforme de 8 T. #
-        # Sendo de 60ºC o ângulo formado entre v e B, determine a força magnética que atua sobre a    #
-        # carga supondo que a mesma foi lançada com velocidade igual a 5x10³ m/s.                  #
-        ##############################################################################################
+       
 
         # Definindo valores das variaveis
         
@@ -33,12 +29,7 @@ def Menu_analise_vetorial():
     ########################### Força magnética entre dois condutores #############################
     if resp == 2:
 
-        ######################################### Exemplo 2 ##########################################
-        # Suponha que uma carga elétrica de 4 μC seja lançada em um campo magnético uniforme de 8 T. #
-        # Sendo de 60ºC o ângulo formado entre v e B, determine a força magnética que atua sobre a   #
-        # carga supondo que a mesma foi lançada com velocidade igual a 5x10³ m/s.                    #
-        ##############################################################################################
-
+       
 
         #Definindo valores das variaveis
         
