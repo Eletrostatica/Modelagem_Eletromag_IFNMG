@@ -172,6 +172,8 @@ Função de Menu para o arquivo Eletrostatica.py, de forma que facilita o uso da
 
 **Exemplo campo esfera :** Uma esfera maciça, de raio a = 2,00 cm, possui carga uniforme q1 = +5,00 fC. Determine o módulo do campo elétrico (a) em r = a/2,00, (b)r = a e (c) em r = 2,30a.
 
+**Exemplo de Densidade de Fluxo**: "Questão nove da Lista eletrsostática 1" -> Quatro cargas pontuais estão localizadas nos vértices de um quadrado de 4m de lado, sendo q1 = Q, q2 = -2Q , q3 = -Q e q4 = 2Q e posições P1(-2,2,0), P2(-2,-2,0), P3(2,-2,0) e P4(2,2,0), respectivamente. Se Q = 15μC, determine D em (0,0,6).
+
 **Exemplo para fluxo de carga pontual**: Uma carga pontual de 1,8 μC está no centro de uma superfície gaussiana cúbica de 55 cm de aresta. Qual é o fluxo elétrico através da superfície?
 
 **Exemplo1 Potencial Elétrico:** Três cargas pontuais Q1 = 1 mC, Q2 = −2mC, Q3 = 3 mC, estao localizadas, respectivamente, em (0,0,4), (-2,5,1) e (3,-4,6).
